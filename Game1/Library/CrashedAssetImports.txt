@@ -1,0 +1,1 @@
+Assets/GameModels/mrs_template_full.blend
