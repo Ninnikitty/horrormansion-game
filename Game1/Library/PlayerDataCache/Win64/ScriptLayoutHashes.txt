@@ -1,9 +1,10 @@
 Win64
 PlayerPath?
-C:/Users/Niina/Documents/GitHub/horror-game/letstrythisgameuwu/Game1.exe
+F:/GitHubProjects/horror-game/uwugame/Game1.exe
 SceneListBegin?
 Assets/Scenes/MainMenu.unity
 Assets/Scenes/GameScene1.unity
+Assets/Scenes/LobbyScene.unity
 SceneListEnd?
 3c08375166df118bd1801438fc36b92f Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 77c21079ace8d76ce6e941d3dabbfe6e Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
@@ -214,6 +215,7 @@ d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.Spa
 219ec6059796d8951d2adcd8505d0dc2 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.TouchPad
 61faedcd907718913efd3ec146822d0e Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Ball.Ball
 a8cd58c1680eb5251e5604e560cf89e9 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.TimedObjectDestructor
+71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.CharacterMovement
 d791aa6007fa3640be1164ea75bb087d Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 34665528cf8da97e082a230c8afb96c6 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.DepthOfFieldDeprecated
 c8533c9804499b27f7c31b277d275f91 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Fisheye
