@@ -6,10 +6,10 @@ public class CharacterMovement : MonoBehaviour{
 
     float speed = 0;
     float rotSpeed = 80;
-    float gravity = 10;
+    float gravity = 600;
     float rot = 0;
 
-    float walkSpeed = 1;
+    float walkSpeed = 2;
     float sprintSpeed = 4;
     float walkSpeedBack = -1;
     float timeTillIdleDefault = 10;
@@ -75,6 +75,7 @@ public class CharacterMovement : MonoBehaviour{
             animator.SetInteger("playerAnimState", - 1);
             timeTillIdle = timeTillIdleDefault;
         }
+        
         rot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
         transform.eulerAngles = new Vector3(0, rot, 0);
         moveDirection.y -= gravity * Time.deltaTime;

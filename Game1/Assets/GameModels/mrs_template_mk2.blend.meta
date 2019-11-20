@@ -2229,7 +2229,7 @@ ModelImporter:
       name: look_around
       takeName: look_around
       firstFrame: 0
-      lastFrame: 119
+      lastFrame: 599
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
