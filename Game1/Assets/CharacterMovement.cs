@@ -6,15 +6,14 @@ public class CharacterMovement : MonoBehaviour{
 
     float speed = 0;
     float rotSpeed = 80;
-    float gravity = 10;
+    float gravity = 600;
     float rot = 0;
-    bool crouched = false;
 
-    float crouchSpeed = 1;
-    float walkSpeed = 3;
-    float sprintSpeed = 6;
-    float walkSpeedBack = -2;
-    float crouchSpeedBack = -1;
+    float walkSpeed = 2;
+    float sprintSpeed = 4;
+    float walkSpeedBack = -1;
+    float timeTillIdleDefault = 10;
+    float timeTillIdle;
 
     KeyCode forward = KeyCode.W;
     KeyCode backwards = KeyCode.S;
@@ -29,51 +28,29 @@ public class CharacterMovement : MonoBehaviour{
     void Start(){
         ctrl = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        crouched = animator.GetBool("crouched");
+        timeTillIdle = timeTillIdleDefault;
     }
 
     // Update is called once per frame
     void Update(){
 
-        //Check if crouch is pressed and toggle crouch
-        if (Input.GetKey(crouch))
-        {
-            animator.SetBool("crouched", !animator.GetBool("crouched"));
-            crouched = animator.GetBool("crouched");
-            if (crouched)
-            {
-                animator.SetInteger("playerAnimState", 3);
-            }
-        }
+        timeTillIdle -= Time.deltaTime;
 
         if (Input.GetKey(forward))
         {
-            if (Input.GetKey(sprint) && !crouched){
+            if (Input.GetKey(sprint)){
                 animator.SetInteger("playerAnimState", 2);
                 speed = sprintSpeed;
             }
-            else if (!crouched) {
+            else{
                 speed = walkSpeed;
                 animator.SetInteger("playerAnimState", 1);
-            }
-            else if (crouched)
-            {
-                speed = crouchSpeed;
-                animator.SetInteger("playerAnimState", 6);
             }
         }
         else if (Input.GetKey(backwards))
         {
-            if (!crouched)
-            {
-                animator.SetInteger("playerAnimState", 1);
-                speed = walkSpeedBack;
-            }
-            else if (crouched)
-            {
-                animator.SetInteger("playerAnimState", 6);
-                speed = crouchSpeedBack;
-            }
+            animator.SetInteger("playerAnimState", 1);
+            speed = walkSpeedBack;
         }
         //After checking for position and setting speed and animation, move the character
         moveDirection = new Vector3(0, 0, 1);
@@ -93,6 +70,12 @@ public class CharacterMovement : MonoBehaviour{
             animator.SetInteger("playerAnimState", 0);
             moveDirection = Vector3.zero;
         }
+        if (timeTillIdle < 0)
+        {
+            animator.SetInteger("playerAnimState", - 1);
+            timeTillIdle = timeTillIdleDefault;
+        }
+        
         rot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
         transform.eulerAngles = new Vector3(0, rot, 0);
         moveDirection.y -= gravity * Time.deltaTime;
