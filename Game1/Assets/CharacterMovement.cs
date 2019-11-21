@@ -6,7 +6,7 @@ public class CharacterMovement : MonoBehaviour{
 
     float speed = 0;
     float rotSpeed = 80;
-    float gravity = 10;
+    float gravity = 1000;
     float rot = 0;
     bool crouched = false;
 
