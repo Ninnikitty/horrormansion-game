@@ -123,7 +123,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 17
+  controlID: 34
 --- !u!114 &4
 >>>>>>> player
 MonoBehaviour:
@@ -300,8 +300,8 @@ MonoBehaviour:
 =======
     width: 532
     height: 286
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 224}
+  m_MaxSize: {x: 4002, y: 4024}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -337,8 +337,8 @@ MonoBehaviour:
     y: 0
     width: 529
     height: 635
-  m_MinSize: {x: 204, y: 224}
-  m_MaxSize: {x: 4004, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
 >>>>>>> player
   m_Panes:
@@ -632,9 +632,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 12280000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: dcb2ffff
+      m_ExpandedIDs: ce4bffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -720,10 +720,16 @@ MonoBehaviour:
     m_ExpandedIDs: 00000000ba6a0000626b0000fe6b0000c66c0000306e0000d06f000090700000927000009a70000000ca9a3b
 =======
     scrollPos: {x: 0, y: 127}
+<<<<<<< HEAD
     m_SelectedIDs: ae390000
     m_LastClickedID: 14766
     m_ExpandedIDs: 0000000024380000ec38000080390000a83b0000083e000000ca9a3b
 >>>>>>> player
+=======
+    m_SelectedIDs: 804a0000
+    m_LastClickedID: 19072
+    m_ExpandedIDs: 000000000c490000c8490000544a0000564c0000d04c000000ca9a3b
+>>>>>>> origin/player
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -751,7 +757,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000ba6a0000626b0000fe6b0000c66c0000306e0000d06f000090700000927000009a700000
+=======
+    m_ExpandedIDs: 000000000c490000c8490000544a0000564c0000d04c0000
+>>>>>>> origin/player
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -778,10 +788,14 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
+<<<<<<< HEAD
     m_HadKeyboardFocusLastEvent: 1
 <<<<<<< HEAD
     m_ExpandedInstanceIDs: c6230000
 =======
+=======
+    m_HadKeyboardFocusLastEvent: 0
+>>>>>>> origin/player
     m_ExpandedInstanceIDs: c6230000000000008c8cffff7e0d00001028000012280000
 >>>>>>> player
     m_RenameOverlay:
