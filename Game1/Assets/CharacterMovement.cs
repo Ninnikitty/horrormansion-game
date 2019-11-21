@@ -15,19 +15,24 @@ public class CharacterMovement : MonoBehaviour{
     float timeTillIdleDefault = 10;
     float timeTillIdle;
 
+    bool in3rdOerson = true;
+
     KeyCode forward = KeyCode.W;
     KeyCode backwards = KeyCode.S;
     KeyCode sprint = KeyCode.LeftShift;
     KeyCode crouch = KeyCode.LeftControl;
+    KeyCode switchCamera = KeyCode.C;
 
     Vector3 moveDirection = Vector3.zero;
 
     CharacterController ctrl;
     Animator animator;
+    cameraSwitcher cs;
     // Start is called before the first frame update
     void Start(){
         ctrl = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        cs = FindObjectOfType<cameraSwitcher>();
         timeTillIdle = timeTillIdleDefault;
     }
 
@@ -41,10 +46,15 @@ public class CharacterMovement : MonoBehaviour{
             if (Input.GetKey(sprint)){
                 animator.SetInteger("playerAnimState", 2);
                 speed = sprintSpeed;
+                cs.runningCamera(true);
             }
             else{
                 speed = walkSpeed;
                 animator.SetInteger("playerAnimState", 1);
+            }
+            if (Input.GetKeyUp(sprint))
+            {
+                cs.runningCamera(false);
             }
         }
         else if (Input.GetKey(backwards))
@@ -74,6 +84,11 @@ public class CharacterMovement : MonoBehaviour{
         {
             animator.SetInteger("playerAnimState", - 1);
             timeTillIdle = timeTillIdleDefault;
+        }
+        if (Input.GetKeyUp(switchCamera))
+        {
+            cs.SwitchCamera(in3rdOerson);
+            in3rdOerson = !in3rdOerson;
         }
         
         rot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
