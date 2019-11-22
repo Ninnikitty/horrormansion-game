@@ -47,7 +47,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 498}
   m_MaxSize: {x: 14004, y: 14048}
   vertical: 0
-  controlID: 12
+  controlID: 109
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 13
+  controlID: 110
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 224}
   m_MaxSize: {x: 8006, y: 4024}
   vertical: 0
-  controlID: 14
+  controlID: 111
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -336,20 +336,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Stalin/Materials
+    - Assets/modularRalingSet/prefabs
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Stalin/Materials
+  - Assets/modularRalingSet/prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\alex\Desktop\horrorgaymunity\horror-game\Game1
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: f6b00300
-    m_LastClickedID: 241910
-    m_ExpandedIDs: 00000000902900009c2c0000182e000004330000323300007233000046380000a0390000ba390000b6600200ce600200747902007c7902006a9c02005c9d0200342b0300402b0300482b030000ca9a3b
+    scrollPos: {x: 0, y: 60}
+    m_SelectedIDs: ca760000
+    m_LastClickedID: 30410
+    m_ExpandedIDs: 000000004c0c0000be0d0000b40f000076110000ac110000b4140000e21500001a160000e41600001c1700004417000060170000ae1a00008c1c0000121e00002c1e0000e01f0000f04400007a5500008e55000096550000c27600007ec9000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -377,7 +377,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000090290000302b00009c2c0000182e0000fe300000043300003233000072330000d8360000463800009e390000a0390000ba390000
+    m_ExpandedIDs: 000000004c0c0000be0d0000b40f000076110000ac110000b4140000e21500001a160000e41600001c1700004417000060170000ae1a00008c1c0000121e00002c1e0000e01f0000f0440000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -495,10 +495,10 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 96f9ffff
-      m_LastClickedID: -1642
-      m_ExpandedIDs: faf2fdff9605feff181efeffc225feffb82cfeff764bfeffd291feff44f0feff367dffff32bcffff3a3e0000623f0000264000005a40000066e10200f6e70200b8e8020028cf03001cd30300f6d30300
+      scrollPos: {x: 0, y: 609}
+      m_SelectedIDs: d6fbffff
+      m_LastClickedID: -1066
+      m_ExpandedIDs: 3032ffffda9affffd6fbffff20450000e445000018460000408100005c820000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -538,8 +538,7 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Scene
-    m_Image: {fileID: 2318424515335265636, guid: 0000000000000000d000000000000000,
-      type: 0}
+    m_Image: {fileID: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
@@ -554,9 +553,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 76.68848, y: -10.749715, z: -105.97981}
+    m_Target: {x: 173.99748, y: -25.78801, z: -161.00153}
     speed: 2
-    m_Value: {x: 76.68848, y: -10.749715, z: -105.97981}
+    m_Value: {x: 173.99748, y: -25.78801, z: -161.00153}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -584,13 +583,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.02306394, y: -0.92142195, z: 0.055355243, w: -0.3839082}
+    m_Target: {x: 0.029550655, y: 0.90551126, z: -0.0639477, w: 0.41843385}
     speed: 2
-    m_Value: {x: -0.02306394, y: -0.92142195, z: 0.055355243, w: -0.3839082}
+    m_Value: {x: 0.029550655, y: 0.90551126, z: -0.0639477, w: 0.41843385}
   m_Size:
-    m_Target: 131.72653
+    m_Target: 237.19376
     speed: 2
-    m_Value: 131.72653
+    m_Value: 237.19376
   m_Ortho:
     m_Target: 0
     speed: 2
