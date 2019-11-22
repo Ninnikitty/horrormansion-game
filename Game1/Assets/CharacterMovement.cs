@@ -27,12 +27,12 @@ public class CharacterMovement : MonoBehaviour{
 
     CharacterController ctrl;
     Animator animator;
-    cameraSwitcher cs;
+    cameraController cs;
     // Start is called before the first frame update
     void Start(){
         ctrl = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        cs = FindObjectOfType<cameraSwitcher>();
+        cs = FindObjectOfType<cameraController>();
         timeTillIdle = timeTillIdleDefault;
     }
 

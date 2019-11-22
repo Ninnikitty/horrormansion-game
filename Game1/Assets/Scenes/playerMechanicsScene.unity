@@ -437,6 +437,8 @@ GameObject:
   - component: {fileID: 1204354929}
   - component: {fileID: 1204354928}
   - component: {fileID: 1204354927}
+  - component: {fileID: 1204354930}
+  - component: {fileID: 1204354931}
   m_Layer: 0
   m_Name: 1stPCamera
   m_TagString: MainCamera
@@ -470,10 +472,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9e6f8da97ccaac47abf4015162aed5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 10
-  maxYAngle: 80
-  cameraRotSpeed: 1
-  Target: {fileID: 1204354926}
   Player: {fileID: 1627776990}
 --- !u!81 &1204354928
 AudioListener:
@@ -525,6 +523,31 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!135 &1204354930
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204354925}
+  m_Material: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1204354931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204354925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b2392f0a95009b49ac3dd52fc9b120c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1378872507
 PrefabInstance:
   m_ObjectHideFlags: 0
