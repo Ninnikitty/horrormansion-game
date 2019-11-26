@@ -7,3 +7,8 @@ Cmd: preprocess
 Cmd: preprocess
   insize=3448 outsize=2533 ok=1
 Cmd: initializeCompiler
+<<<<<<< HEAD
+=======
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+>>>>>>> parent of 787ecb0... Commit of player camera
