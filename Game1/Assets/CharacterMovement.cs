@@ -17,6 +17,7 @@ public class CharacterMovement : MonoBehaviour{
     float crouchSpeedBack = -1;
 
     bool in3rdOerson = true;
+    int timeTillIdle, timeTillIdleDefault = 20;
 
     KeyCode forward = KeyCode.W;
     KeyCode backwards = KeyCode.S;
@@ -33,12 +34,8 @@ public class CharacterMovement : MonoBehaviour{
     void Start(){
         ctrl = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-<<<<<<< HEAD
-        crouched = animator.GetBool("crouched");
-=======
         cs = FindObjectOfType<cameraController>();
         timeTillIdle = timeTillIdleDefault;
->>>>>>> player
     }
 
     // Update is called once per frame
@@ -66,16 +63,9 @@ public class CharacterMovement : MonoBehaviour{
                 speed = walkSpeed;
                 animator.SetInteger("playerAnimState", 1);
             }
-<<<<<<< HEAD
-            else if (crouched)
-            {
-                speed = crouchSpeed;
-                animator.SetInteger("playerAnimState", 6);
-=======
             if (Input.GetKeyUp(sprint))
             {
                 cs.runningCamera(false);
->>>>>>> player
             }
         }
         else if (Input.GetKey(backwards))
@@ -109,8 +99,6 @@ public class CharacterMovement : MonoBehaviour{
             animator.SetInteger("playerAnimState", 0);
             moveDirection = Vector3.zero;
         }
-<<<<<<< HEAD
-=======
         if (timeTillIdle < 0)
         {
             animator.SetInteger("playerAnimState", - 1);
@@ -122,7 +110,6 @@ public class CharacterMovement : MonoBehaviour{
             in3rdOerson = !in3rdOerson;
         }
         
->>>>>>> player
         rot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
         transform.eulerAngles = new Vector3(0, rot, 0);
         moveDirection.y -= gravity * Time.deltaTime;
