@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class Inventory : MonoBehaviour
     [SerializeField] public GameObject movement;
     public static Inventory inventory;
     public int[] collectableItems = { 0, 0 };
+    [SerializeField] private Text pickupText;
+    private float timeToAppear = 2f;
+    private float timeWhenDisappear;
 
     void Start()
     {
@@ -19,7 +23,6 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I)) //Press I to activate inventory
         {
-            //if (GameManager.gameManager.inGameFunction) return;
             usingInv = true;
             ShowInv();
             stopMovement();
@@ -31,12 +34,16 @@ public class Inventory : MonoBehaviour
             HideInv();
             allowMovement();
         }
+
+        if (pickupText.enabled && (Time.time >= timeWhenDisappear))
+        {
+            pickupText.enabled = false;
+        }
     }
 
     void ShowInv()
     {
         invHolder.SetActive(true);
-        //SceneManager.LoadScene(Inventory);
     }
 
     void HideInv() //hide inventory
@@ -56,12 +63,20 @@ public class Inventory : MonoBehaviour
         movement.GetComponent<CharacterMovement>().enabled = false; //disable the movement script
     }
 
-    public void AddItem(string ItemID, GameObject Object)
+    public void AddItem(string ItemID, GameObject Object) //adding item from interaction
     {
-        if(ItemID == GameObject.FindWithTag("Key").ToString())
+        if(ItemID == GameObject.FindWithTag("Key").ToString()) //if an item has a tag "key"
         {
             collectableItems[0]++;
         }
-        //can implement a textanimation
+
+        textAnimation(ItemID); //calling the pickup text
     }
+
+    void textAnimation (string ItemID) //let text appear when item has been picked with the item name
+    {
+        pickupText.text = "Picked up a " + ItemID;
+        pickupText.enabled = true;
+        timeWhenDisappear = Time.time + timeToAppear;
+    } 
 }
