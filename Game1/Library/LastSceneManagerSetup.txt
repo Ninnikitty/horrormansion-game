@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/playerMechanicsScene.unity
+=======
+- path: Assets/Scenes/GameScene1.unity
+>>>>>>> 787ecb025ea24a95f98df5afd00e4a41adf31118
   isLoaded: 1
   isActive: 1
