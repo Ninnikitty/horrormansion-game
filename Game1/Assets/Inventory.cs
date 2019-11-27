@@ -10,13 +10,19 @@ public class Inventory : MonoBehaviour
     [SerializeField] public GameObject movement;
     public static Inventory inventory;
     public int[] collectableItems = { 0, 0 };
-    [SerializeField] private Text pickupText;
+    [SerializeField] public Text pickupText;
     private float timeToAppear = 2f;
     private float timeWhenDisappear;
+
+    [SerializeField] public RawImage slotImage;
+    public bool isImgOn;
 
     void Start()
     {
         inventory = this;
+
+        slotImage.enabled = false; //slotimage from inventory not visible unless an item has been picked
+        isImgOn = false;
     }
 
     void Update()
@@ -35,20 +41,21 @@ public class Inventory : MonoBehaviour
             allowMovement();
         }
 
-        if (pickupText.enabled && (Time.time >= timeWhenDisappear))
+        if (pickupText.enabled && (Time.time >= timeWhenDisappear)) //pickup text disappearance time
         {
             pickupText.enabled = false;
         }
+
     }
 
-    void ShowInv()
+    void ShowInv() //show and hide functions for inventory canvas
     {
         invHolder.SetActive(true);
     }
 
-    void HideInv() //hide inventory
+    void HideInv()
     {
-        invHolder.SetActive(false); //canvas state false
+        invHolder.SetActive(false);
     }
 
     void allowMovement()
@@ -71,6 +78,9 @@ public class Inventory : MonoBehaviour
         }
 
         textAnimation(ItemID); //calling the pickup text
+
+        slotImage.enabled = true; //slotimage from inventory shows up when a key is picked
+        isImgOn = true;
     }
 
     void textAnimation (string ItemID) //let text appear when item has been picked with the item name
