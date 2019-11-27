@@ -20,6 +20,8 @@ public class CharacterMovement : MonoBehaviour
 
     KeyCode forward = KeyCode.W;
     KeyCode backwards = KeyCode.S;
+    KeyCode right = KeyCode.D;
+    KeyCode left = KeyCode.A;
     KeyCode sprint = KeyCode.LeftShift;
     KeyCode crouch = KeyCode.LeftControl;
     KeyCode switchCamera = KeyCode.C;
@@ -41,11 +43,12 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         timeTillIdle -= Time.deltaTime;
 
+        //If pressed forward
         if (Input.GetKey(forward))
         {
+            moveDirection = new Vector3(0, 0, 1);
             if (Input.GetKey(sprint))
             {
                 animator.SetInteger("playerAnimState", 2);
@@ -62,13 +65,28 @@ public class CharacterMovement : MonoBehaviour
                 cs.runningCamera(false);
             }
         }
+        //If pressed backwards
         else if (Input.GetKey(backwards))
         {
+            moveDirection = new Vector3(0, 0, 1);
             animator.SetInteger("playerAnimState", 1);
             speed = walkSpeedBack;
         }
+        //If pressed right
+        else if (Input.GetKey(right))
+        {
+            animator.SetInteger("playerAnimState", 1);
+            speed = walkSpeed;
+            moveDirection = new Vector3(1, 0, 0);
+        }
+        //If pressed left
+        else if (Input.GetKey(left))
+        {
+            animator.SetInteger("playerAnimState", 1);
+            speed = walkSpeed;
+            moveDirection = new Vector3(-1, 0, 0);
+        }
         //After checking for position and setting speed and animation, move the character
-        moveDirection = new Vector3(0, 0, 1);
         moveDirection *= speed;
         moveDirection = transform.TransformDirection(moveDirection);
 
@@ -80,6 +98,18 @@ public class CharacterMovement : MonoBehaviour
             moveDirection = Vector3.zero;
         }
         if (Input.GetKeyUp(backwards))
+        {
+            speed = 0;
+            animator.SetInteger("playerAnimState", 0);
+            moveDirection = Vector3.zero;
+        }
+        if (Input.GetKeyUp(right))
+        {
+            speed = 0;
+            animator.SetInteger("playerAnimState", 0);
+            moveDirection = Vector3.zero;
+        }
+        if (Input.GetKeyUp(left))
         {
             speed = 0;
             animator.SetInteger("playerAnimState", 0);
