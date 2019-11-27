@@ -11089,7 +11089,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 204e0b05ceec86c4a84a3c9cfc0cd559, type: 3}
+  m_Texture: {fileID: 2800000, guid: adffee692a30160418e3ea8765e2a504, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -31439,6 +31439,7 @@ GameObject:
   - component: {fileID: 1541053448}
   - component: {fileID: 1541053450}
   - component: {fileID: 1541053449}
+  - component: {fileID: 1541053451}
   m_Layer: 0
   m_Name: Slot
   m_TagString: Untagged
@@ -31498,6 +31499,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1541053447}
   m_CullTransparentMesh: 0
+--- !u!114 &1541053451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541053447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1639460747}
+          m_MethodName: useKey
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  delegates: []
 --- !u!4 &1541714276 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4852974938841794, guid: 20d3dde8cb6caa949ae3dd226db73e29,
@@ -39428,7 +39458,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 204e0b05ceec86c4a84a3c9cfc0cd559, type: 3}
+  m_Texture: {fileID: 2800000, guid: adffee692a30160418e3ea8765e2a504, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -40788,7 +40818,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 204e0b05ceec86c4a84a3c9cfc0cd559, type: 3}
+  m_Texture: {fileID: 2800000, guid: adffee692a30160418e3ea8765e2a504, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

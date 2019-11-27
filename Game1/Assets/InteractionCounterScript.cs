@@ -29,25 +29,25 @@ public class InteractionCounterScript : MonoBehaviour
 
     void Update()
     {
-                if (Input.GetKeyDown(KeyCode.E)) //if E is pressed, item will be picked
-                {
-                    if(hit.collider.tag == "Key") //if the hit collider has a tag "key"
-                    {
-                        Debug.Log("I tried to pick up a key");
+       if (Input.GetKeyDown(KeyCode.E)) //if E is pressed, item will be picked
+       {
+         if(hit.collider.tag == "Key") //if the hit collider has a tag "key"
+          {
+           Debug.Log("I tried to pick up a key");
 
-                        data_amount_key++; //key added, number goes up
-                        data_text_key.text = data_amount_key.ToString();
+           data_amount_key++; //key added, number goes up
+           data_text_key.text = data_amount_key.ToString();
 
-                        Inventory.inventory.AddItem(interactingObjectName, interactingGameObject);
-                        hit.transform.SetParent(itemsDB.transform);
-                        AddToInventory(hit.transform);
+           Inventory.inventory.AddItem(interactingObjectName, interactingGameObject);
+           hit.transform.SetParent(itemsDB.transform);
+           AddToInventory(hit.transform);
 
-                        clearData(); //deleting the item from scene
-                        return;
-                    }
-                }
+           clearData(); //deleting the item from scene
+           return;
+           }
+        }
 
-                useKey(hit.transform);
+     useKey(hit.transform);
     }
 
     void search ()
@@ -94,23 +94,11 @@ public class InteractionCounterScript : MonoBehaviour
                 Debug.Log("use");
                 data_amount_key--;
                 data_text_key.text = data_amount_key.ToString();
-                //invText.text = data_amount_key.ToString();
-                //Inventory.inventory.pickupText.text = interactingObjectName + "has been used";
 
-                /* if (data_amount_key == 0)
-                 {
-                     Inventory.inventory.slotImage.enabled = false; //icon and number goes away from inventory
-                     invText.enabled = false;
-
-                 } */
+                slots = inventorySlots.GetComponentsInChildren<RawImage>();
                 for (int i = 0; i < slots.Length; i++)
                 {
-                    if (transform.childCount > 0)
-                    {
-                        //slots = inventorySlots.GetComponentsInChildren<RawImage>();
-                        //slots[i].transform.GetChild(i).gameObject.SetActive(false);
-                        // Destroy(slots[i].transform.GetChild(0).gameObject);
-                        }
+                        slots[i].texture = null; //now it deletes all the rawimages from inventory (items picked)  
                 } 
 
                 }
@@ -120,13 +108,13 @@ public class InteractionCounterScript : MonoBehaviour
     public void AddToInventory(Transform item)
     {
         Debug.Log("Adding to inv..");
-        slots = inventorySlots.GetComponentsInChildren<RawImage>();
+        slots = inventorySlots.GetComponentsInChildren<RawImage>(); //slots match the rawimages from slot objects
 
         for(int i = 0; i < slots.Length; i++)
         {
             if (slots[i].texture == null)
             {
-                slots[i].texture = item.GetComponent<RawImage>().texture;
+                slots[i].texture = item.GetComponent<RawImage>().texture; //replacing slot texture with the texture of the picked object (icon)
                 return;
             }
         }

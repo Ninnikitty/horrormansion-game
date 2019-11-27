@@ -14,15 +14,10 @@ public class Inventory : MonoBehaviour
     private float timeToAppear = 2f;
     private float timeWhenDisappear;
 
-   // [SerializeField] public RawImage slotImage;
-   // public bool isImgOn;
 
     void Start()
     {
         inventory = this;
-
-        //slotImage.enabled = false; //slotimage from inventory not visible unless an item has been picked
-        //isImgOn = false;
     }
 
     void Update()
@@ -78,9 +73,6 @@ public class Inventory : MonoBehaviour
         }
 
         textAnimation(ItemID); //calling the pickup text
-
-       // slotImage.enabled = true; //slotimage from inventory shows up when a key is picked
-       // isImgOn = true;
     }
 
     void textAnimation (string ItemID) //let text appear when item has been picked with the item name
