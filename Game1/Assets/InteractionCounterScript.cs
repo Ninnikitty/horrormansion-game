@@ -33,7 +33,7 @@ public class InteractionCounterScript : MonoBehaviour
        {
          if(hit.collider.tag == "Key") //if the hit collider has a tag "key"
           {
-           Debug.Log("I tried to pick up a key");
+           Debug.Log("I tried to pick up a " + interactingObjectName);
 
            data_amount_key++; //key added, number goes up
            data_text_key.text = data_amount_key.ToString();
@@ -45,9 +45,21 @@ public class InteractionCounterScript : MonoBehaviour
            clearData(); //deleting the item from scene
            return;
            }
+
+            if (hit.collider.tag == "Item") //if the object has a tag "item" -> can be instered to any game object. remember to add box colliders (2), one has the trigger option and is sized correctly and one keeps the gravity for the object. then add a raw image and the texture = icon of the item. shows up in the inventory
+            {
+                Debug.Log("I tried to pick up a " + interactingGameObject.ToString()); //gives u the whole object name
+                Inventory.inventory.AddItem(interactingObjectName, interactingGameObject);
+                hit.transform.SetParent(itemsDB.transform);
+                AddToInventory(hit.transform);
+
+                clearData(); //deleting the item from scene
+                return;
+            }
         }
 
      useKey(hit.transform);
+     emptyInv();
     }
 
     void search ()
@@ -95,13 +107,19 @@ public class InteractionCounterScript : MonoBehaviour
                 data_amount_key--;
                 data_text_key.text = data_amount_key.ToString();
 
-                slots = inventorySlots.GetComponentsInChildren<RawImage>();
-                for (int i = 0; i < slots.Length; i++)
-                {
-                        slots[i].texture = null; //now it deletes all the rawimages from inventory (items picked)  
-                } 
-
                 }
+        }
+    }
+    
+    public void emptyInv() //deletes all items from inventory. implement a method that lets u choose the item to choose Or let the game events take the specific item
+    {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            slots = inventorySlots.GetComponentsInChildren<RawImage>();
+            for (int i = 0; i < slots.Length; i++)
+            {
+                slots[i].texture = null; //now it deletes all the rawimages from inventory (items picked)  
+            }
         }
     }
 

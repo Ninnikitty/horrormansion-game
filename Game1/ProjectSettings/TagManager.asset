@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Key
   - Slot
+  - Item
   layers:
   - Default
   - TransparentFX

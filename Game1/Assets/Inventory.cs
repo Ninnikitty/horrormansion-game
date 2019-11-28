@@ -72,7 +72,7 @@ public class Inventory : MonoBehaviour
             collectableItems[0]++;
         }
 
-        textAnimation(ItemID); //calling the pickup text
+        textAnimation(Object.ToString()); //(ItemID); //calling the pickup text. uses the objects actual name
     }
 
     void textAnimation (string ItemID) //let text appear when item has been picked with the item name
