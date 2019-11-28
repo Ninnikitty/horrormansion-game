@@ -13,6 +13,7 @@ public class CharacterMovement : MonoBehaviour
     float walkSpeed = 2;
     float sprintSpeed = 4;
     float walkSpeedBack = -1;
+	float sideStepSpeed = 0.8f;
     float timeTillIdleDefault = 10;
     float timeTillIdle;
 
@@ -75,15 +76,15 @@ public class CharacterMovement : MonoBehaviour
         //If pressed right
         else if (Input.GetKey(right))
         {
-            animator.SetInteger("playerAnimState", 1);
-            speed = walkSpeed;
+            animator.SetInteger("playerAnimState", 5);
+            speed = sideStepSpeed;
             moveDirection = new Vector3(1, 0, 0);
         }
         //If pressed left
         else if (Input.GetKey(left))
         {
-            animator.SetInteger("playerAnimState", 1);
-            speed = walkSpeed;
+            animator.SetInteger("playerAnimState", 4);
+            speed = sideStepSpeed;
             moveDirection = new Vector3(-1, 0, 0);
         }
         //After checking for position and setting speed and animation, move the character
