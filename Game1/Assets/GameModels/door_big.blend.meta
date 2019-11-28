@@ -1,0 +1,160 @@
+fileFormatVersion: 2
+guid: 99872698a98ca4c46a0a768b2b506d56
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Armature_001
+    100004: Bone
+    100006: Bone_0
+    100008: Cube_001
+    100010: //RootNode
+    100012: karmi
+    100014: kynnys
+    100016: ovi
+    100018: ovi_001
+    100020: ovi_002
+    100022: ovi_003
+    100024: ovi_004
+    100026: ovi_005
+    400000: Armature
+    400002: Armature_001
+    400004: Bone
+    400006: Bone_0
+    400008: Cube_001
+    400010: //RootNode
+    400012: karmi
+    400014: kynnys
+    400016: ovi
+    400018: ovi_001
+    400020: ovi_002
+    400022: ovi_003
+    400024: ovi_004
+    400026: ovi_005
+    2100000: karmi
+    2100002: door_000
+    2100004: Material_001
+    2100006: Material
+    2100008: kynnys
+    2300000: Cube_001
+    2300002: karmi
+    2300004: kynnys
+    2300006: ovi
+    2300008: ovi_001
+    2300010: ovi_002
+    2300012: ovi_003
+    2300014: ovi_004
+    2300016: ovi_005
+    3300000: Cube_001
+    3300002: karmi
+    3300004: kynnys
+    3300006: ovi
+    3300008: ovi_001
+    3300010: ovi_002
+    3300012: ovi_003
+    3300014: ovi_004
+    3300016: ovi_005
+    4300000: Cube_001
+    4300002: ovi_005
+    4300004: ovi_004
+    4300006: ovi_003
+    4300008: ovi_002
+    4300010: ovi_001
+    4300012: ovi
+    4300014: kynnys
+    4300016: karmi
+    7400000: Default Take
+    7400002: closed
+    7400004: closed_002
+    7400006: closed_003
+    7400008: closed_004
+    7400010: open
+    7400012: opening
+    7400014: opening_001
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

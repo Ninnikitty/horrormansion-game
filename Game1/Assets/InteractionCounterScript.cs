@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InteractionCounterScript : MonoBehaviour
 {
     public Camera camera; //the players camera that faces the objects
-    public float interactDistance = 300f;
+    public float interactDistance = 15f;
     public GameObject interactingGameObject;
     public string interactingObjectName;
     public bool interact;
