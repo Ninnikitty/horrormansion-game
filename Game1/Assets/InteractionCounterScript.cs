@@ -23,7 +23,7 @@ public class InteractionCounterScript : MonoBehaviour
     void Start()
     {
         InvokeRepeating("search", 0f, 0.5f); //item search
-        data_text_key.text = data_amount_key.ToString(); //number text matches the amount of keys
+        //data_text_key.text = data_amount_key.ToString(); //number text matches the amount of key
 
     }
 
@@ -55,6 +55,11 @@ public class InteractionCounterScript : MonoBehaviour
 
                 clearData(); //deleting the item from scene
                 return;
+            }
+            if (hit.collider.tag == "door")
+            {
+                doorToggle doorSc = interactingGameObject.GetComponent<doorToggle>();
+                doorSc.toggleDoor();
             }
         }
 
