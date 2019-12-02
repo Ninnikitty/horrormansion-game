@@ -19,6 +19,9 @@ public class CharacterMovement : MonoBehaviour
 
     bool in3rdOerson = true;
 
+    [SerializeField] public GameObject polaroidCanvas; //set the polaroid canvas from inspector
+    bool canvasOn;
+
     KeyCode forward = KeyCode.W;
     KeyCode backwards = KeyCode.S;
     KeyCode right = KeyCode.D;
@@ -125,11 +128,31 @@ public class CharacterMovement : MonoBehaviour
         {
             cs.SwitchCamera(in3rdOerson);
             in3rdOerson = !in3rdOerson;
+            ShowCanvas(); //show polaroid canvas
+            canvasOn = true;
+        } else if (in3rdOerson && canvasOn) //if canvas is on and we're in 3rd person, take canvas off
+        {
+            canvasOn = false;
+            HideCanvas();
         }
+        if(Input.GetKeyDown(KeyCode.F) && canvasOn) //capturing pictures
+        {
+            ScreenCapture.TakeScreenshot_Static(1000, 1000); //set width and height
+        } 
 
         rot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
         transform.eulerAngles = new Vector3(0, rot, 0);
         moveDirection.y -= gravity * Time.deltaTime;
         ctrl.Move(moveDirection * Time.deltaTime);
+    }
+
+    void ShowCanvas() //show and hide functions for polaroid canvas
+    {
+        polaroidCanvas.SetActive(true);
+    }
+
+    void HideCanvas()
+    {
+        polaroidCanvas.SetActive(false);
     }
 }

@@ -106,8 +106,14 @@ public class InteractionCounterScript : MonoBehaviour
                 Debug.Log("use");
                 data_amount_key--;
                 data_text_key.text = data_amount_key.ToString();
+                emptyInv();
 
+                slots = inventorySlots.GetComponentsInChildren<RawImage>();
+                for (int i = 0; i < slots.Length; i++)
+                {
+                    slots[i].texture = null; //now it deletes all the rawimages from inventory (items picked)  
                 }
+            }
         }
     }
     
