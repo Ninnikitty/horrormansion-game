@@ -21,6 +21,7 @@ public class CharacterMovement : MonoBehaviour
 
     [SerializeField] public GameObject polaroidCanvas; //set the polaroid canvas from inspector
     bool canvasOn;
+    public GameObject keyUI; //place counterui here
 
     KeyCode forward = KeyCode.W;
     KeyCode backwards = KeyCode.S;
@@ -130,10 +131,12 @@ public class CharacterMovement : MonoBehaviour
             in3rdOerson = !in3rdOerson;
             ShowCanvas(); //show polaroid canvas
             canvasOn = true;
+            HideKeyUI(); // hide key ui because the polaroid camera is on
         } else if (in3rdOerson && canvasOn) //if canvas is on and we're in 3rd person, take canvas off
         {
             canvasOn = false;
-            HideCanvas();
+            HideCanvas(); //hide polaroid canvas
+            ShowKeyUI(); //show key ui 
         }
         if(Input.GetKeyDown(KeyCode.F) && canvasOn) //capturing pictures
         {
@@ -154,5 +157,15 @@ public class CharacterMovement : MonoBehaviour
     void HideCanvas()
     {
         polaroidCanvas.SetActive(false);
+    }
+
+    public void ShowKeyUI() //show and hide keyUI (made public so other classes can access
+    {
+        keyUI.SetActive(true);
+    }
+
+    public void HideKeyUI()
+    {
+        keyUI.SetActive(false);
     }
 }
