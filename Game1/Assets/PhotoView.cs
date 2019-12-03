@@ -1,57 +1,72 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System.IO;
 
 public class PhotoView : MonoBehaviour
 {
     GameObject[] gameObj;
-    Texture2D[] textList;
+    Texture2D[] textList; //list for textures created from images
 
     string[] files;
     string pathPreFix;
 
-    // Use this for initialization
-    void Start()
+    private RawImage img;
+
+    void Awake()
     {
-        //Change this to change pictures folder
-        string path = @"C:\Users\alex\Desktop\ExamplePictureFolder";
-
-        pathPreFix = @"file://";
-
-        files = System.IO.Directory.GetFiles(path, "*.png");
-
-        gameObj = GameObject.FindGameObjectsWithTag("Pics");
-
-        StartCoroutine(LoadImages());
+        deletePics(); //deletes previous pictures every time game is started (clears the path folder) the first time you open the pic inventory
     }
 
 
     void Update()
     {
+        string path = @"C:\Users\alex\Desktop\ExamplePictureFolder"; //the path to picture folder
 
+        pathPreFix = @"file://";
+
+        files = System.IO.Directory.GetFiles(path, "*.png");
+
+        gameObj = GameObject.FindGameObjectsWithTag("Pics"); //objects for pictures
+
+        StartCoroutine(LoadImages());
+        
     }
 
-    private IEnumerator LoadImages()
+    private IEnumerator LoadImages() //can load 8 pics now. crashes when its over 8
     {
-        //load all images in default folder as textures and apply dynamically to plane game objects.
-        //6 pictures per page
         textList = new Texture2D[files.Length];
 
-        int dummy = 0;
+        int index = 0;
         foreach (string tstring in files)
         {
-
             string pathTemp = pathPreFix + tstring;
             WWW www = new WWW(pathTemp);
             yield return www;
-            Texture2D texTmp = new Texture2D(1024, 1024, TextureFormat.DXT1, false);
+            Texture2D texTmp = new Texture2D(1024, 1024, TextureFormat.DXT1, false); //turning images to texture
             www.LoadImageIntoTexture(texTmp);
+            textList[index] = texTmp;
 
-            textList[dummy] = texTmp;
+            img = gameObj[index].GetComponent<RawImage>();
+            img.texture = texTmp; //setting the texture to raw image
+            index++;
 
-            gameObj[dummy].GetComponent<Renderer>().material.SetTexture("_MainTex", texTmp);
-            dummy++;
+           /* if(index > 7)
+             {
+
+             }  */
         }
 
+    }
+
+    void deletePics()
+    {
+        System.IO.DirectoryInfo di = new DirectoryInfo(@"C:\Users\alex\Desktop\ExamplePictureFolder");
+
+        foreach (FileInfo file in di.GetFiles())
+        {
+            file.Delete();
+        }
     }
 }

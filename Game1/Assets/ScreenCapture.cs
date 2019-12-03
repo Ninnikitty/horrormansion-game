@@ -14,7 +14,7 @@ public class ScreenCapture : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        captureCamera = gameObject.GetComponent<Camera>();
+        captureCamera = gameObject.GetComponent<Camera>(); //the camera taking pictures (1st person)
     }
 
     private void OnPostRender()
@@ -48,7 +48,7 @@ public class ScreenCapture : MonoBehaviour
         takeScreenShotOnNextFrame = true;
     }
 
-    public static void TakeScreenshot_Static(int width, int height)
+    public static void TakeScreenshot_Static(int width, int height) //function used in camera script to take screenshots
     {
         instance.TakeScreenshot(width, height);
     }

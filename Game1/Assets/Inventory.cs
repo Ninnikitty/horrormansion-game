@@ -19,18 +19,21 @@ public class Inventory : MonoBehaviour
 
     public GameObject keyUI; //place counterui here
 
+    GameObject getCamera;
+
     void Start()
     {
         inventory = this;
     }
 
-    void Update()
+    public void Update()
     {
         if (Input.GetKeyDown(KeyCode.I)) //Press I to activate inventory
         {
             usingInv = true;
             ShowInv();
             stopMovement();
+            disableCamera();
 
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && usingInv) //Press esc to cancel inventory
@@ -38,6 +41,7 @@ public class Inventory : MonoBehaviour
             usingInv = false;
             HideInv();
             allowMovement();
+            allowCamera();
         }
 
         if (pickupText.enabled && (Time.time >= timeWhenDisappear)) //pickup text disappearance time
@@ -48,16 +52,19 @@ public class Inventory : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.P)) //pic inventory
         {
             picInv = true;
-            ShowPics();
-            stopMovement();
-            HideKeyUI();
+            ShowPics(); //show pic inventory
+            stopMovement(); //stop movement
+            HideKeyUI(); //hide key ui
+            disableCamera(); //stop camera rotation
 
         }
         else if(Input.GetKeyDown(KeyCode.Escape) & picInv) //hide pic inventory
         {
-            HidePics();
-            allowMovement();
-            ShowKeyUI();
+            picInv = false;
+            HidePics(); //hide picture canvas
+            allowMovement(); //allow movement
+            ShowKeyUI(); //show key ui
+            allowCamera(); //allow camera rotation
         }
 
     }
@@ -102,6 +109,18 @@ public class Inventory : MonoBehaviour
     {
         movement = GameObject.Find("mrs_template_mk2"); //find the game object (character)
         movement.GetComponent<CharacterMovement>().enabled = false; //disable the movement script
+    }
+
+    void allowCamera()
+    {
+        getCamera = GameObject.Find("1stPCamera");
+        getCamera.GetComponent<cameraController>().enabled = true;
+    }
+
+    void disableCamera()
+    {
+        getCamera = GameObject.Find("1stPCamera");
+        getCamera.GetComponent<cameraController>().enabled = false;
     }
 
     public void AddItem(string ItemID, GameObject Object) //adding item from interaction
