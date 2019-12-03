@@ -20,6 +20,8 @@ public class InteractionCounterScript : MonoBehaviour
     public int data_amount_key = 0;
     public Text data_text_key;
 
+    public static bool GameIsPaused;
+
     void Start()
     {
         InvokeRepeating("search", 0f, 0.5f); //item search
