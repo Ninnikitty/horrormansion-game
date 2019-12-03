@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using UnityEditor;
 
 public class PhotoView : MonoBehaviour
 {
@@ -16,13 +17,21 @@ public class PhotoView : MonoBehaviour
 
     void Awake()
     {
+        DirectoryInfo dirInf = new DirectoryInfo(Application.persistentDataPath + "/" + "ScreenshotFolder"); //create a folder named screenshotfolder (not to assets)
+        if (!dirInf.Exists)
+        {
+            Debug.Log("Creating subdirectory");
+            dirInf.Create(); //if the directory doesnt exist, create it
+        }
+
         deletePics(); //deletes previous pictures every time game is started (clears the path folder) the first time you open the pic inventory
     }
 
 
     void Update()
     {
-        string path = @"C:\Users\alex\Desktop\ExamplePictureFolder"; //the path to picture folder
+        //string path = @"C:\Users\alex\Desktop\ExamplePictureFolder"; //the path to picture folder
+        string path = Application.persistentDataPath + "/ScreenshotFolder";
 
         pathPreFix = @"file://";
 
@@ -62,7 +71,7 @@ public class PhotoView : MonoBehaviour
 
     void deletePics()
     {
-        System.IO.DirectoryInfo di = new DirectoryInfo(@"C:\Users\alex\Desktop\ExamplePictureFolder");
+        System.IO.DirectoryInfo di = new DirectoryInfo(Application.persistentDataPath + "/ScreenshotFolder"); //delete pictures from this path
 
         foreach (FileInfo file in di.GetFiles())
         {
