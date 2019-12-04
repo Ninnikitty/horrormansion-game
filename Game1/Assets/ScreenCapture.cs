@@ -31,10 +31,7 @@ public class ScreenCapture : MonoBehaviour
             picCounter++;
 
             byte[] byteArray = renderResult.EncodeToPNG();
-            //System.IO.File.WriteAllBytes(Application.dataPath + "/CameraScreenshot.png", byteArray);
-            //var folder = Directory.CreateDirectory(@"C:\Users\%\Documents\TeamErrorPics\");
 
-            //System.IO.File.WriteAllBytes(@"C:\Users\alex\Desktop\ExamplePictureFolder" + "/" + picCounter + "CameraScreenshot.png", byteArray); //testpath
             System.IO.File.WriteAllBytes(Application.persistentDataPath + "/ScreenshotFolder/" + picCounter + "CameraScreenshot.png", byteArray); //path to screenshot folder created to appdata folders
             Debug.Log("Saved " + picCounter + " CameraScreenshot.png");
 

@@ -24,11 +24,8 @@ public class CharacterMovement : MonoBehaviour
     public GameObject keyUI; //place counterui here
 
     GameObject flashObj; //for camera flash
-    private float timeToAppear = 1f;
+    private float timeToAppear = 0.01f;
     private float timeWhenDisappear;
-
-    private float minTime = 0.01f;
-    private float lastTime = 0f;
 
     KeyCode forward = KeyCode.W;
     KeyCode backwards = KeyCode.S;
@@ -60,6 +57,11 @@ public class CharacterMovement : MonoBehaviour
     {
         timeTillIdle -= Time.deltaTime;
 
+        //if (flashObj.GetComponent<Light>().enabled = true && (0.02f - lastTime) > minTime)
+        if (flashObj.GetComponent<Light>().enabled = true && (Time.time >= timeWhenDisappear)) //disappearance time
+        {
+            flashObj.GetComponent<Light>().enabled = false;
+        }
 
         //If pressed forward
         if (Input.GetKey(forward))
@@ -152,16 +154,12 @@ public class CharacterMovement : MonoBehaviour
             flashObj.GetComponent<Light>().enabled = false; //turn the flash off
         }
 
-        if (flashObj.GetComponent<Light>().enabled = true && (0.02 - lastTime) > minTime)//if (flashObj.GetComponent<Light>().enabled = true && (Time.time >= timeWhenDisappear)) //disappearance time
-        {
-            flashObj.GetComponent<Light>().enabled = false; 
-        } 
          
         if (Input.GetKeyDown(KeyCode.F) && canvasOn) //capturing pictures
         {
             ScreenCapture.TakeScreenshot_Static(1000, 1000); //set width and height
             flashObj.GetComponent<Light>().enabled = true; //allow the light to be flashed
-            timeWhenDisappear = timeToAppear; //Time.time + timeToAppear;
+            timeWhenDisappear = Time.time + timeToAppear;
         }
 
         rot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
