@@ -48,26 +48,32 @@ public class PhotoView : MonoBehaviour
         textList = new Texture2D[files.Length];
 
         int index = 0;
-        foreach (string tstring in files)
-        {
-            string pathTemp = pathPreFix + tstring;
-            WWW www = new WWW(pathTemp);
-            yield return www;
-            Texture2D texTmp = new Texture2D(1024, 1024, TextureFormat.DXT1, false); //turning images to texture
-            www.LoadImageIntoTexture(texTmp);
-            textList[index] = texTmp;
+            foreach (string tstring in files)
+            {
+                string pathTemp = pathPreFix + tstring;
+                WWW www = new WWW(pathTemp);
+                yield return www;
 
-            img = gameObj[index].GetComponent<RawImage>();
-            img.texture = texTmp; //setting the texture to raw image
-            index++;
+            try //try catch for the error
+            {
+                Texture2D texTmp = new Texture2D(1024, 1024, TextureFormat.DXT1, false); //turning images to texture
+                www.LoadImageIntoTexture(texTmp);
+                textList[index] = texTmp;
 
-           /* if(index > 7)
-             {
+                img = gameObj[index].GetComponent<RawImage>();
+                img.texture = texTmp; //setting the texture to raw image
+                index++;
 
-             }  */
+                /* if(index > 7)
+                  {
+
+                  }  */
+            }catch
+            {
+                Debug.Log("You've reached the photo limit");
+            }
         }
-
-    }
+        }
 
     void deletePics()
     {

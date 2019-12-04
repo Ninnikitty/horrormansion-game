@@ -23,6 +23,13 @@ public class CharacterMovement : MonoBehaviour
     bool canvasOn;
     public GameObject keyUI; //place counterui here
 
+    GameObject flashObj; //for camera flash
+    private float timeToAppear = 1f;
+    private float timeWhenDisappear;
+
+    private float minTime = 0.01f;
+    private float lastTime = 0f;
+
     KeyCode forward = KeyCode.W;
     KeyCode backwards = KeyCode.S;
     KeyCode right = KeyCode.D;
@@ -43,12 +50,16 @@ public class CharacterMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         cs = FindObjectOfType<cameraController>();
         timeTillIdle = timeTillIdleDefault;
+
+        flashObj = GameObject.Find("CameraFlashLight"); //find the flash cameobject
+        flashObj.GetComponent<Light>().enabled = false; //light is off
     }
 
     // Update is called once per frame
     void Update()
     {
         timeTillIdle -= Time.deltaTime;
+
 
         //If pressed forward
         if (Input.GetKey(forward))
@@ -137,11 +148,21 @@ public class CharacterMovement : MonoBehaviour
             canvasOn = false;
             HideCanvas(); //hide polaroid canvas
             ShowKeyUI(); //show key ui 
+
+            flashObj.GetComponent<Light>().enabled = false; //turn the flash off
         }
-        if(Input.GetKeyDown(KeyCode.F) && canvasOn) //capturing pictures
+
+        if (flashObj.GetComponent<Light>().enabled = true && (0.02 - lastTime) > minTime)//if (flashObj.GetComponent<Light>().enabled = true && (Time.time >= timeWhenDisappear)) //disappearance time
+        {
+            flashObj.GetComponent<Light>().enabled = false; 
+        } 
+         
+        if (Input.GetKeyDown(KeyCode.F) && canvasOn) //capturing pictures
         {
             ScreenCapture.TakeScreenshot_Static(1000, 1000); //set width and height
-        } 
+            flashObj.GetComponent<Light>().enabled = true; //allow the light to be flashed
+            timeWhenDisappear = timeToAppear; //Time.time + timeToAppear;
+        }
 
         rot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
         transform.eulerAngles = new Vector3(0, rot, 0);
