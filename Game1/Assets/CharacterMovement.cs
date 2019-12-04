@@ -57,12 +57,6 @@ public class CharacterMovement : MonoBehaviour
     {
         timeTillIdle -= Time.deltaTime;
 
-        //if (flashObj.GetComponent<Light>().enabled = true && (0.02f - lastTime) > minTime)
-        if (flashObj.GetComponent<Light>().enabled = true && (Time.time >= timeWhenDisappear)) //disappearance time
-        {
-            flashObj.GetComponent<Light>().enabled = false;
-        }
-
         //If pressed forward
         if (Input.GetKey(forward))
         {
@@ -154,6 +148,11 @@ public class CharacterMovement : MonoBehaviour
             flashObj.GetComponent<Light>().enabled = false; //turn the flash off
         }
 
+        //if (flashObj.GetComponent<Light>().enabled = true && (0.02f - lastTime) > minTime)
+         if (flashObj.GetComponent<Light>().enabled = true && (Time.time >= timeWhenDisappear)) //disappearance time
+        {
+           flashObj.GetComponent<Light>().enabled = false; 
+        } 
          
         if (Input.GetKeyDown(KeyCode.F) && canvasOn) //capturing pictures
         {
