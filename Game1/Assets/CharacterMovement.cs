@@ -11,6 +11,7 @@ public class CharacterMovement : MonoBehaviour
     float rot = 0;
 
     float walkSpeed = 2;
+    float sprintSpeed = 6;
     float walkSpeedBack = -1;
 	float sideStepSpeed = 0.8f;
     float timeTillIdleDefault = 10;
