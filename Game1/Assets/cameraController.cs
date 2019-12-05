@@ -5,8 +5,6 @@ using UnityEngine;
 public class cameraController : MonoBehaviour
 {
     Camera cam;
-    Vector3 thirdPLocation = new Vector3(0.25f, 1.95f, -0.50f);
-    Vector3 firstPLocation = new Vector3(0, 1.75f, 0.25f);
     bool currently3rd = true;
 
     private float firstPSens = 5f;
@@ -16,7 +14,6 @@ public class cameraController : MonoBehaviour
     public GameObject PlayerObj;
     private float mouseX, mouseY;
 
-    private float yOffset = 15f;
 
     private Vector2 currentRotation;
 
@@ -25,6 +22,7 @@ public class cameraController : MonoBehaviour
     void Start()
     {
         cam = gameObject.GetComponent<Camera>();
+        //cam.transform.localPosition = thirdPLocation;
     }
 
 
@@ -56,7 +54,6 @@ public class cameraController : MonoBehaviour
             Vector3 targetPostition = new Vector3(Player.position.x,
                                            this.transform.position.y,
                                            Player.position.z);
-            this.transform.LookAt(targetPostition);
             this.transform.rotation = Quaternion.Euler(this.transform.rotation.x+10+mouseY, this.transform.rotation.y+yOffset, this.transform.rotation.z);
             Player.rotation = Quaternion.Euler(0, mouseX, 0);
         }
