@@ -19,6 +19,14 @@ public class CharacterMovement : MonoBehaviour
 
     bool in3rdOerson = true;
 
+    [SerializeField] public GameObject polaroidCanvas; //set the polaroid canvas from inspector
+    bool canvasOn;
+    public GameObject keyUI; //place counterui here
+
+    GameObject flashObj; //for camera flash
+    private float timeToAppear = 0.01f;
+    private float timeWhenDisappear;
+
     KeyCode forward = KeyCode.W;
     KeyCode backwards = KeyCode.S;
     KeyCode right = KeyCode.D;
@@ -39,6 +47,9 @@ public class CharacterMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         cs = FindObjectOfType<cameraController>();
         timeTillIdle = timeTillIdleDefault;
+
+        flashObj = GameObject.Find("CameraFlashLight"); //find the flash cameobject
+        flashObj.GetComponent<Light>().enabled = false; //light is off
     }
 
     // Update is called once per frame
@@ -125,11 +136,54 @@ public class CharacterMovement : MonoBehaviour
         {
             cs.SwitchCamera(in3rdOerson);
             in3rdOerson = !in3rdOerson;
+            ShowCanvas(); //show polaroid canvas
+            canvasOn = true;
+            HideKeyUI(); // hide key ui because the polaroid camera is on
+        } else if (in3rdOerson && canvasOn) //if canvas is on and we're in 3rd person, take canvas off
+        {
+            canvasOn = false;
+            HideCanvas(); //hide polaroid canvas
+            ShowKeyUI(); //show key ui 
+
+            flashObj.GetComponent<Light>().enabled = false; //turn the flash off
+        }
+
+        //if (flashObj.GetComponent<Light>().enabled = true && (0.02f - lastTime) > minTime)
+         if (flashObj.GetComponent<Light>().enabled = true && (Time.time >= timeWhenDisappear)) //disappearance time
+        {
+           flashObj.GetComponent<Light>().enabled = false; 
+        } 
+         
+        if (Input.GetKeyDown(KeyCode.F) && canvasOn) //capturing pictures
+        {
+            ScreenCapture.TakeScreenshot_Static(1000, 1000); //set width and height
+            flashObj.GetComponent<Light>().enabled = true; //allow the light to be flashed
+            timeWhenDisappear = Time.time + timeToAppear;
         }
 
         rot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
         transform.eulerAngles = new Vector3(0, rot, 0);
         moveDirection.y -= gravity * Time.deltaTime;
         ctrl.Move(moveDirection * Time.deltaTime);
+    }
+
+    void ShowCanvas() //show and hide functions for polaroid canvas
+    {
+        polaroidCanvas.SetActive(true);
+    }
+
+    void HideCanvas()
+    {
+        polaroidCanvas.SetActive(false);
+    }
+
+    public void ShowKeyUI() //show and hide keyUI (made public so other classes can access
+    {
+        keyUI.SetActive(true);
+    }
+
+    public void HideKeyUI()
+    {
+        keyUI.SetActive(false);
     }
 }

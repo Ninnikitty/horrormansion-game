@@ -20,6 +20,8 @@ public class InteractionCounterScript : MonoBehaviour
     public int data_amount_key = 0;
     public Text data_text_key;
 
+    public static bool GameIsPaused;
+
     void Start()
     {
         InvokeRepeating("search", 0f, 0.5f); //item search
@@ -29,36 +31,43 @@ public class InteractionCounterScript : MonoBehaviour
 
     void Update()
     {
-       if (Input.GetKeyDown(KeyCode.E)) //if E is pressed, item will be picked
-       {
-         if(hit.collider.tag == "Key") //if the hit collider has a tag "key"
-          {
-           Debug.Log("I tried to pick up a " + interactingObjectName);
-
-           data_amount_key++; //key added, number goes up
-           data_text_key.text = data_amount_key.ToString();
-
-           Inventory.inventory.AddItem(interactingObjectName, interactingGameObject);
-           hit.transform.SetParent(itemsDB.transform);
-           AddToInventory(hit.transform);
-
-           clearData(); //deleting the item from scene
-           return;
-           }
-
-            if (hit.collider.tag == "Item") //if the object has a tag "item" -> can be instered to any game object. remember to add box colliders (2), one has the trigger option and is sized correctly and one keeps the gravity for the object. then add a raw image and the texture = icon of the item. shows up in the inventory
+        try //catch the no object errors w try catch
+        {
+            if (Input.GetKeyDown(KeyCode.E)) //if E is pressed, item will be picked
             {
-                Debug.Log("I tried to pick up a " + interactingGameObject.ToString()); //gives u the whole object name
-                Inventory.inventory.AddItem(interactingObjectName, interactingGameObject);
-                hit.transform.SetParent(itemsDB.transform);
-                AddToInventory(hit.transform);
+                if (hit.collider.tag == "Key") //if the hit collider has a tag "key"
+                {
+                    Debug.Log("I tried to pick up a " + interactingObjectName);
 
-                clearData(); //deleting the item from scene
-                return;
+                    data_amount_key++; //key added, number goes up
+                    data_text_key.text = data_amount_key.ToString();
+
+                    Inventory.inventory.AddItem(interactingObjectName, interactingGameObject);
+                    hit.transform.SetParent(itemsDB.transform);
+                    AddToInventory(hit.transform);
+
+                    clearData(); //deleting the item from scene
+                    return;
+                }
+
+                if (hit.collider.tag == "Item") //if the object has a tag "item" -> can be instered to any game object. remember to add box colliders (2), one has the trigger option and is sized correctly and one keeps the gravity for the object. then add a raw image and the texture = icon of the item. shows up in the inventory
+                {
+                    Debug.Log("I tried to pick up a " + interactingGameObject.ToString()); //gives u the whole object name
+                    Inventory.inventory.AddItem(interactingObjectName, interactingGameObject);
+                    hit.transform.SetParent(itemsDB.transform);
+                    AddToInventory(hit.transform);
+
+                    clearData(); //deleting the item from scene
+                    return;
+                }
             }
+        } catch 
+        {
+            Debug.Log("No object tagged");
         }
 
-     useKey(hit.transform);
+
+        useKey(hit.transform);
      emptyInv();
     }
 
@@ -106,8 +115,14 @@ public class InteractionCounterScript : MonoBehaviour
                 Debug.Log("use");
                 data_amount_key--;
                 data_text_key.text = data_amount_key.ToString();
+                emptyInv();
 
+                slots = inventorySlots.GetComponentsInChildren<RawImage>();
+                for (int i = 0; i < slots.Length; i++)
+                {
+                    slots[i].texture = null; //now it deletes all the rawimages from inventory (items picked)  
                 }
+            }
         }
     }
     
