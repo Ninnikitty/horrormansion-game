@@ -8,6 +8,7 @@ TagManager:
   - Slot
   - Item
   - Pics
+  - door
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
+  - ignore
+  - player
   - 
   - 
   - 

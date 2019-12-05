@@ -101,13 +101,13 @@ public class Inventory : MonoBehaviour
 
     void allowMovement()
     {
-        movement = GameObject.Find("mrs_template_mk2"); //find the game object (character)
+        movement = GameObject.Find("player"); //find the game object (character)
         movement.GetComponent<CharacterMovement>().enabled = true; //allow the movement script to run
     }
 
     void stopMovement()
     {
-        movement = GameObject.Find("mrs_template_mk2"); //find the game object (character)
+        movement = GameObject.Find("player"); //find the game object (character)
         movement.GetComponent<CharacterMovement>().enabled = false; //disable the movement script
     }
 

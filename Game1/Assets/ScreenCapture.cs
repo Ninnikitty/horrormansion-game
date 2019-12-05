@@ -15,6 +15,13 @@ public class ScreenCapture : MonoBehaviour
     {
         instance = this;
         captureCamera = gameObject.GetComponent<Camera>(); //the camera taking pictures (1st person)
+
+        //Create the pohoto directory
+        DirectoryInfo dirInf = new DirectoryInfo(Application.persistentDataPath + "/" + "ScreenshotFolder"); //create a folder named screenshotfolder (not to assets)
+        if (!dirInf.Exists) {
+            Debug.Log("Creating subdirectory");
+            dirInf.Create(); //if the directory doesnt exist, create it
+        }
     }
 
     private void OnPostRender()
