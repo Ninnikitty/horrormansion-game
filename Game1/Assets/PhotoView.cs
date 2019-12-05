@@ -10,6 +10,8 @@ public class PhotoView : MonoBehaviour
     GameObject[] gameObj;
     Texture2D[] textList; //list for textures created from images
 
+    public static PhotoView photoView;
+
     string[] files;
     string pathPreFix;
 
@@ -24,7 +26,7 @@ public class PhotoView : MonoBehaviour
             dirInf.Create(); //if the directory doesnt exist, create it
         }
 
-        deletePics(); //deletes previous pictures every time game is started (clears the path folder) the first time you open the pic inventory
+        photoView = this;
     }
 
 
@@ -75,7 +77,7 @@ public class PhotoView : MonoBehaviour
         }
         }
 
-    void deletePics()
+    public static void deletePics()
     {
         System.IO.DirectoryInfo di = new DirectoryInfo(Application.persistentDataPath + "/ScreenshotFolder"); //delete pictures from this path
 
