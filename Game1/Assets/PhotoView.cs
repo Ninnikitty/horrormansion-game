@@ -32,7 +32,7 @@ public class PhotoView : MonoBehaviour
 
     void Update()
     {
-        //string path = @"C:\Users\alex\Desktop\ExamplePictureFolder"; //the path to picture folder
+        //the path to picture folder
         string path = Application.persistentDataPath + "/ScreenshotFolder";
 
         pathPreFix = @"file://";
@@ -45,7 +45,7 @@ public class PhotoView : MonoBehaviour
         
     }
 
-    private IEnumerator LoadImages() //can load 8 pics now. crashes when its over 8
+    private IEnumerator LoadImages() //can load 8 pics now. 
     {
         textList = new Texture2D[files.Length];
 
@@ -66,10 +66,6 @@ public class PhotoView : MonoBehaviour
                 img.texture = texTmp; //setting the texture to raw image
                 index++;
 
-                /* if(index > 7)
-                  {
-
-                  }  */
             }catch
             {
                 Debug.Log("You've reached the photo limit");
