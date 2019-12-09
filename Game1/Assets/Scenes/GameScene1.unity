@@ -18927,6 +18927,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 571f3cc6cf641c8498e3eae32bc2ee83, type: 3}
+--- !u!4 &795894605 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400034, guid: 05c2d6b2dfbec2b48a72e6d3d5ddaa22,
+    type: 3}
+  m_PrefabInstance: {fileID: 2066331953}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &796234629
 GameObject:
   m_ObjectHideFlags: 0
@@ -28638,12 +28644,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318309780}
-  m_LocalRotation: {x: -0.013418734, y: -0.2190746, z: -0.08084806, w: 0.9722602}
-  m_LocalPosition: {x: -0.172, y: -0.009, z: 0.163}
-  m_LocalScale: {x: 1.2500012, y: 1.2500013, z: 1.25}
+  m_LocalRotation: {x: -0.02675446, y: 0.029139627, z: 0.99919486, w: 0.0066849864}
+  m_LocalPosition: {x: -1.0090367, y: -0.27128065, z: 0.78784275}
+  m_LocalScale: {x: 1.2500043, y: 1.2500035, z: 1.2500007}
   m_Children: []
-  m_Father: {fileID: 2066331956}
-  m_RootOrder: 1
+  m_Father: {fileID: 795894605}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -3.5270002, y: -25.127, z: -8.721001}
 --- !u!108 &1318309782
 Light:
@@ -28657,11 +28663,11 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
-  m_Range: 12
-  m_SpotAngle: 30
+  m_Range: 30
+  m_SpotAngle: 60
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -28671,7 +28677,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
