@@ -58,7 +58,7 @@ public class Inventory : MonoBehaviour
             disableCamera(); //stop camera rotation
 
         }
-        else if(Input.GetKeyDown(KeyCode.Escape) & picInv) //hide pic inventory
+        else if(Input.GetKeyDown(KeyCode.Escape) && picInv) //hide pic inventory
         {
             picInv = false;
             HidePics(); //hide picture canvas

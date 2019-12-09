@@ -12,13 +12,17 @@ public class InteractionCounterScript : MonoBehaviour
     public bool interact;
     RaycastHit hit;
 
-    [SerializeField] public GameObject itemsDB;
-    [SerializeField] public GameObject inventorySlots;
+    [SerializeField] public GameObject itemsDB; //place itemsdb object here
+    [SerializeField] public GameObject inventorySlots; //place invitemspace from inventory canvas here
     public RawImage[] slots;
+
+    [SerializeField] public GameObject paperTextHolder; //place canvasforpapertext here
+    [SerializeField] public bool usingPaperText;
+    public Text PaperText; //papertext from canvasforpapertext
 
     [Header("Data")]
     public int data_amount_key = 0;
-    public Text data_text_key;
+    public Text data_text_key; //place textcounter from counterui canvas here
 
     public static bool GameIsPaused;
 
@@ -60,6 +64,20 @@ public class InteractionCounterScript : MonoBehaviour
                     clearData(); //deleting the item from scene
                     return;
                 }
+                //remember to add text component (hidden) to the paper object! and write the text you want to appear
+                if (hit.collider.tag == "paper") //also remember to set a triggered box collider to the paper object. make sure the character's interaction camera can see the paper collider from close distance
+                {
+                    usingPaperText = true;
+                    paperTextHolder.SetActive(true); //set the paper canvas active
+                    PaperText.text = interactingGameObject.GetComponent<Text>().text.ToString(); //gets the text component from the object you're interacting with and shows it
+                    PaperText.enabled = true;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Escape) && usingPaperText) // esct -> get away from paper screen
+            {
+                usingPaperText = false;
+                paperTextHolder.SetActive(false);
+                PaperText.enabled = false;
             }
         } catch 
         {
