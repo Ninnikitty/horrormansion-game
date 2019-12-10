@@ -26,6 +26,8 @@ public class InteractionCounterScript : MonoBehaviour
 
     GameObject camObj;
 
+    CharacterController charCtrl;
+
     [Header("Data")]
     public int data_amount_key = 0;
     public Text data_text_key; //place textcounter from counterui canvas here
@@ -73,6 +75,12 @@ public class InteractionCounterScript : MonoBehaviour
                     return;
                 }
 
+                if (hit.collider.tag == "door") //door interaction
+                {
+                    doorToggle doorSc = interactingGameObject.GetComponent<doorToggle>();
+                    doorSc.toggleDoor();
+                }
+
             }
             //remember to add text component (hidden) to the paper object! and write the text you want to appear
             if (hit.collider.tag == "paper") //also remember to set a triggered box collider to the paper object. make sure the character's interaction camera can see the paper collider from close distance
@@ -118,8 +126,15 @@ public class InteractionCounterScript : MonoBehaviour
 
     void search ()
     {
-        if(Physics.Raycast(camera.transform.position, camera.transform.forward, out hit) && hit.distance <= interactDistance) //cameras distance and ray from interactable items
+        //charCtrl = GetComponent<CharacterController>(); //testing
+        //Vector3 p1 = camera.transform.position; //testing
+        //Vector3 p2 = camera.transform.forward; //testing
+
+        if(Physics.Raycast(camera.transform.position, transform.InverseTransformDirection(camera.transform.forward), out hit) && hit.distance <= interactDistance) //cameras distance and ray from interactable items
+        //if(Physics.SphereCast(p1, charCtrl.height / 2, transform.forward, out hit, 5))
+        //if (Physics.Raycast(p1, p2, out hit) && hit.distance <= interactDistance)
         {
+            //hit.distance = interactDistance;
             resetData();
             interact = true; 
 
