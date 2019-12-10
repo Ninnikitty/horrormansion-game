@@ -20,6 +20,12 @@ public class InteractionCounterScript : MonoBehaviour
     [SerializeField] public bool usingPaperText;
     public Text PaperText; //papertext from canvasforpapertext
 
+    public Text pressEText; //text to let the player know they can interact by pressing e (or any other button). this text object is inside counterui canvas
+    private float timeToAppear = 0.001f;
+    private float timeWhenDisappear;
+
+    GameObject camObj;
+
     [Header("Data")]
     public int data_amount_key = 0;
     public Text data_text_key; //place textcounter from counterui canvas here
@@ -30,6 +36,8 @@ public class InteractionCounterScript : MonoBehaviour
     {
         InvokeRepeating("search", 0f, 0.5f); //item search
         data_text_key.text = data_amount_key.ToString(); //number text matches the amount of keys
+
+        camObj = GameObject.Find("1stPCamera");
 
     }
 
@@ -64,21 +72,40 @@ public class InteractionCounterScript : MonoBehaviour
                     clearData(); //deleting the item from scene
                     return;
                 }
-                //remember to add text component (hidden) to the paper object! and write the text you want to appear
-                if (hit.collider.tag == "paper") //also remember to set a triggered box collider to the paper object. make sure the character's interaction camera can see the paper collider from close distance
+
+            }
+            //remember to add text component (hidden) to the paper object! and write the text you want to appear
+            if (hit.collider.tag == "paper") //also remember to set a triggered box collider to the paper object. make sure the character's interaction camera can see the paper collider from close distance
+            {
+                pressEText.enabled = true;
+                pressEText.text = "press E to interact"; //let the player know they can interact with this object
+                timeWhenDisappear = Time.time + timeToAppear;
+
+                if (Input.GetKeyDown(KeyCode.E)) //press e to interact
                 {
-                    usingPaperText = true;
-                    paperTextHolder.SetActive(true); //set the paper canvas active
-                    PaperText.text = interactingGameObject.GetComponent<Text>().text.ToString(); //gets the text component from the object you're interacting with and shows it
-                    PaperText.enabled = true;
+                      pressEText.enabled = false;
+                      usingPaperText = true;
+                      paperTextHolder.SetActive(true); //set the paper canvas active
+                      PaperText.text = interactingGameObject.GetComponent<Text>().text.ToString(); //gets the text component from the object you're interacting with and shows it
+                      PaperText.enabled = true;  //text of the paper
+                      Time.timeScale = 0f; // <- if we want to stop the character. camera needs a separated stop function
+                      camObj.GetComponent<cameraController>().enabled = false; //no camera movement allowed
+                }
+                else if (Input.GetKeyDown(KeyCode.Escape) && usingPaperText) // esct -> get away from paper screen
+                {
+                    usingPaperText = false;
+                    paperTextHolder.SetActive(false);
+                    PaperText.enabled = false;
+                    Time.timeScale = 1f;
+                    camObj.GetComponent<cameraController>().enabled = true;
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.Escape) && usingPaperText) // esct -> get away from paper screen
+
+            if (pressEText.enabled && (Time.time >= timeWhenDisappear)) //pickup text disappearance time
             {
-                usingPaperText = false;
-                paperTextHolder.SetActive(false);
-                PaperText.enabled = false;
+                pressEText.enabled = false;
             }
+
         } catch 
         {
             Debug.Log("No object tagged");
