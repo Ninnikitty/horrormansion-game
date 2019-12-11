@@ -36,7 +36,7 @@ public class InteractionCounterScript : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("search", 0f, 0.5f); //item search
+        //InvokeRepeating("search", 0f, 0.5f); //item search
         data_text_key.text = data_amount_key.ToString(); //number text matches the amount of keys
 
         camObj = GameObject.Find("1stPCamera");
@@ -45,6 +45,12 @@ public class InteractionCounterScript : MonoBehaviour
 
     void Update()
     {
+        camera.transform.localRotation = Quaternion.identity; //the magical fix to raycasting
+        camera.transform.localPosition = Vector3.zero;
+        search();
+
+        Debug.DrawRay(camera.transform.position, camera.transform.forward, Color.yellow); // ray debug
+
         try //catch the no object errors w try catch
         {
             if (Input.GetKeyDown(KeyCode.E)) //if E is pressed, item will be picked
@@ -119,22 +125,17 @@ public class InteractionCounterScript : MonoBehaviour
             Debug.Log("No object tagged");
         }
 
-
         useKey(hit.transform);
-     emptyInv();
+        emptyInv();
     }
 
     void search ()
     {
-        //charCtrl = GetComponent<CharacterController>(); //testing
-        //Vector3 p1 = camera.transform.position; //testing
-        //Vector3 p2 = camera.transform.forward; //testing
 
-        if(Physics.Raycast(camera.transform.position, transform.InverseTransformDirection(camera.transform.forward), out hit) && hit.distance <= interactDistance) //cameras distance and ray from interactable items
-        //if(Physics.SphereCast(p1, charCtrl.height / 2, transform.forward, out hit, 5))
-        //if (Physics.Raycast(p1, p2, out hit) && hit.distance <= interactDistance)
+        if(Physics.Raycast(camera.transform.position, camera.transform.forward, out hit) && hit.distance <= interactDistance) //cameras distance and ray from interactable items
+
         {
-            //hit.distance = interactDistance;
+            hit.distance = interactDistance;
             resetData();
             interact = true; 
 
