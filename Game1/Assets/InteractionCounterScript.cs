@@ -24,13 +24,16 @@ public class InteractionCounterScript : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("search", 0f, 0.5f); //item search
+        //InvokeRepeating("search", 0f, 0.5f); //item search
         data_text_key.text = data_amount_key.ToString(); //number text matches the amount of keys
 
     }
 
     void Update()
     {
+        camera.transform.localRotation = Quaternion.identity;
+        camera.transform.localPosition = Vector3.zero;
+        search();
         try //catch the no object errors w try catch
         {
             if (Input.GetKeyDown(KeyCode.E)) //if E is pressed, item will be picked
@@ -59,6 +62,11 @@ public class InteractionCounterScript : MonoBehaviour
 
                     clearData(); //deleting the item from scene
                     return;
+
+                }
+                if (hit.collider.tag == "door") {
+                    doorToggle doorSc = interactingGameObject.GetComponent<doorToggle>();
+                    doorSc.toggleDoor();
                 }
             }
         } catch 
@@ -68,7 +76,8 @@ public class InteractionCounterScript : MonoBehaviour
 
 
         useKey(hit.transform);
-     emptyInv();
+        emptyInv();
+        Debug.DrawRay(camera.transform.position, camera.transform.forward, Color.yellow);
     }
 
     void search ()

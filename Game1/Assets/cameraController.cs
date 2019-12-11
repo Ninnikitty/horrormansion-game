@@ -14,6 +14,7 @@ public class cameraController : MonoBehaviour
     private float maxYAngle = 80f;
     public Transform Player;
     public GameObject PlayerObj;
+    public GameObject interactionCam;
     private float mouseX, mouseY;
 
     private float yOffset = 15f;
@@ -21,11 +22,9 @@ public class cameraController : MonoBehaviour
     private Vector2 currentRotation;
 
 
-
     void Start()
     {
         cam = gameObject.GetComponent<Camera>();
-
         PhotoView.deletePics(); //clean previous sessions pictures from the screenshotfolder every time the camera is started for the first time (might have to change when the saving mechanism has been implemented
     }
 
