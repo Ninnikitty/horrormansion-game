@@ -51,7 +51,7 @@ public class Inventory : MonoBehaviour
             pickupText.enabled = false;
         }
 
-        if(Input.GetKeyDown(KeyCode.P)) //pic inventory
+        if(Input.GetKeyDown(KeyCode.G)) //pic inventory
         {
             picInv = true;
             ShowPics(); //show pic inventory
