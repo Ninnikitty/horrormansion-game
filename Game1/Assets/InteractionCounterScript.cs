@@ -32,6 +32,10 @@ public class InteractionCounterScript : MonoBehaviour
     public int data_amount_key = 0;
     public Text data_text_key; //place textcounter from counterui canvas here
 
+    private bool GotLobbyKey;
+    private bool GotLabyrKey;
+    private bool GotKeysFor2ndFDoor;
+
     public static bool GameIsPaused;
 
     void Start()
@@ -55,12 +59,41 @@ public class InteractionCounterScript : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E)) //if E is pressed, item will be picked
             {
-                if (hit.collider.tag == "Key") //if the hit collider has a tag "key"
+                if (hit.collider.tag == "Key") //if the hit collider has a tag "key" (keys for the 2nd floor door)
                 {
                     Debug.Log("I tried to pick up a " + interactingObjectName);
 
                     data_amount_key++; //key added, number goes up
                     data_text_key.text = data_amount_key.ToString();
+
+                    Inventory.inventory.AddItem(interactingObjectName, interactingGameObject);
+                    hit.transform.SetParent(itemsDB.transform);
+                    AddToInventory(hit.transform);
+
+                    clearData(); //deleting the item from scene
+                    return;
+
+                    if(data_amount_key == 4)
+                    {
+                        GotKeysFor2ndFDoor = true;
+                    }
+                }
+
+                if(hit.collider.tag == "lobbykey") //key to open corridor door [notice tags]
+                {
+                    GotLobbyKey = true;
+
+                    Inventory.inventory.AddItem(interactingObjectName, interactingGameObject);
+                    hit.transform.SetParent(itemsDB.transform);
+                    AddToInventory(hit.transform);
+
+                    clearData(); //deleting the item from scene
+                    return;
+                }
+
+                if(hit.collider.tag == "labkey") //key to open the labyrinth door [notice tags]
+                {
+                    GotLabyrKey = true;
 
                     Inventory.inventory.AddItem(interactingObjectName, interactingGameObject);
                     hit.transform.SetParent(itemsDB.transform);
@@ -81,11 +114,40 @@ public class InteractionCounterScript : MonoBehaviour
                     return;
                 }
 
-                if (hit.collider.tag == "door") //door interaction
+                if (hit.collider.tag == "door") //regular door interaction
                 {
-                    doorToggle doorSc = interactingGameObject.GetComponent<doorToggle>();
-                    doorSc.toggleDoor();
+                        doorToggle doorSc = interactingGameObject.GetComponent<doorToggle>();
+                        doorSc.toggleDoor();
                 }
+
+                if (hit.collider.tag == "corridorlockeddoor") //corridor door interaction
+                {
+                    if (GotLobbyKey == true)
+                    {
+                        Destroy(GameObject.Find("lockforcorridor")); //destroy the lock object when opening the locked door
+
+                        doorToggle doorSc = interactingGameObject.GetComponent<doorToggle>();
+                        doorSc.toggleDoor();
+                    }
+                }
+                if (hit.collider.tag == "lablockeddoor") //labyrinth door interaction
+                {
+                    if (GotLabyrKey == true)
+                    {
+                        Destroy(GameObject.Find("lockforlabyrinth")); //destroy the lock of labyrinth door
+
+                        doorToggle doorSc = interactingGameObject.GetComponent<doorToggle>();
+                        doorSc.toggleDoor();
+                    }
+                }
+                if (hit.collider.tag == "lockedbigdoor") //open big door in the second floor if all the keys have been collected (tagged as keys)
+                {
+                    if (GotKeysFor2ndFDoor == true)
+                    {
+                        //what happens at the end of the game
+                    }
+                }
+
 
             }
             //remember to add text component (hidden) to the paper object! and write the text you want to appear

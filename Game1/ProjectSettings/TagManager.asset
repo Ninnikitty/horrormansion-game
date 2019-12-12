@@ -10,6 +10,11 @@ TagManager:
   - Pics
   - door
   - paper
+  - corridorlockeddoor
+  - lablockeddoor
+  - lobbykey
+  - labkey
+  - lockedbigdoor
   layers:
   - Default
   - TransparentFX
