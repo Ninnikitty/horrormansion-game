@@ -233,7 +233,7 @@ public class InteractionCounterScript : MonoBehaviour
         interactingGameObject = null;
     } 
 
-    //testing
+   /* //testing
     public void useKey(Transform item) //function to use key (deletes a key one by one atm)
     {
         if(data_amount_key >= 1 && data_amount_key <= 10) //cant go below 0
@@ -264,7 +264,7 @@ public class InteractionCounterScript : MonoBehaviour
                 slots[i].texture = null; //now it deletes all the rawimages from inventory (items picked)  
             }
         }
-    }
+    } */
 
     public void AddToInventory(Transform item)
     {
