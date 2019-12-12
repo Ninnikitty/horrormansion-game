@@ -15,6 +15,7 @@ TagManager:
   - lobbykey
   - labkey
   - lockedbigdoor
+  - safewithkeypad
   layers:
   - Default
   - TransparentFX

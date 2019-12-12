@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class InteractionCounterScript : MonoBehaviour
 {
+    public static InteractionCounterScript interactioncounterscript;
+
     public Camera camera; //the players camera that faces the objects
     public float interactDistance = 15f;
     public GameObject interactingGameObject;
     public string interactingObjectName;
     public bool interact;
-    RaycastHit hit;
+    public RaycastHit hit;
 
     [SerializeField] public GameObject itemsDB; //place itemsdb object here
     [SerializeField] public GameObject inventorySlots; //place invitemspace from inventory canvas here
@@ -28,13 +30,16 @@ public class InteractionCounterScript : MonoBehaviour
 
     CharacterController charCtrl;
 
+    public GameObject keyPadCanvasHolder; //set the keypad canvas here
+    public bool usingKeyPad;
+
     [Header("Data")]
     public int data_amount_key = 0;
     public Text data_text_key; //place textcounter from counterui canvas here
 
-    private bool GotLobbyKey;
-    private bool GotLabyrKey;
-    private bool GotKeysFor2ndFDoor;
+    public bool GotLobbyKey;
+    public bool GotLabyrKey;
+    public bool GotKeysFor2ndFDoor;
 
     public static bool GameIsPaused;
 
@@ -45,9 +50,11 @@ public class InteractionCounterScript : MonoBehaviour
 
         camObj = GameObject.Find("1stPCamera");
 
+        interactioncounterscript = this;
+
     }
 
-    void Update()
+    public void Update()
     {
         camera.transform.localRotation = Quaternion.identity; //the magical fix to raycasting
         camera.transform.localPosition = Vector3.zero;
@@ -77,18 +84,6 @@ public class InteractionCounterScript : MonoBehaviour
                     {
                         GotKeysFor2ndFDoor = true;
                     }
-                }
-
-                if(hit.collider.tag == "lobbykey") //key to open corridor door [notice tags]
-                {
-                    GotLobbyKey = true;
-
-                    Inventory.inventory.AddItem(interactingObjectName, interactingGameObject);
-                    hit.transform.SetParent(itemsDB.transform);
-                    AddToInventory(hit.transform);
-
-                    clearData(); //deleting the item from scene
-                    return;
                 }
 
                 if(hit.collider.tag == "labkey") //key to open the labyrinth door [notice tags]
@@ -148,6 +143,14 @@ public class InteractionCounterScript : MonoBehaviour
                     }
                 }
 
+                if(hit.collider.tag == "safewithkeypad") //the safe under the paining, between the staircase. we're activating the canvas, the actual process happens inside KeyPadSystem script
+                {
+                    keyPadCanvasHolder.SetActive(true);
+                    usingKeyPad = true;
+                    Cursor.visible = true;
+                    Time.timeScale = 0f;
+                    camObj.GetComponent<cameraController>().enabled = false;
+                }
 
             }
             //remember to add text component (hidden) to the paper object! and write the text you want to appear
@@ -167,14 +170,15 @@ public class InteractionCounterScript : MonoBehaviour
                       Time.timeScale = 0f; // <- if we want to stop the character. camera needs a separated stop function
                       camObj.GetComponent<cameraController>().enabled = false; //no camera movement allowed
                 }
-                else if (Input.GetKeyDown(KeyCode.Escape) && usingPaperText) // esct -> get away from paper screen
-                {
-                    usingPaperText = false;
-                    paperTextHolder.SetActive(false);
-                    PaperText.enabled = false;
-                    Time.timeScale = 1f;
-                    camObj.GetComponent<cameraController>().enabled = true;
-                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Escape) && usingPaperText) // esct -> get away from paper screen
+            {
+                usingPaperText = false;
+                paperTextHolder.SetActive(false);
+                PaperText.enabled = false;
+                Time.timeScale = 1f;
+                camObj.GetComponent<cameraController>().enabled = true;
+                Cursor.visible = false;
             }
 
             if (pressEText.enabled && (Time.time >= timeWhenDisappear)) //pickup text disappearance time
@@ -229,6 +233,7 @@ public class InteractionCounterScript : MonoBehaviour
         interactingGameObject = null;
     } 
 
+    //testing
     public void useKey(Transform item) //function to use key (deletes a key one by one atm)
     {
         if(data_amount_key >= 1 && data_amount_key <= 10) //cant go below 0
@@ -248,7 +253,7 @@ public class InteractionCounterScript : MonoBehaviour
             }
         }
     }
-    
+    //testing
     public void emptyInv() //deletes all items from inventory. implement a method that lets u choose the item to choose Or let the game events take the specific item
     {
         if (Input.GetKeyDown(KeyCode.N))
