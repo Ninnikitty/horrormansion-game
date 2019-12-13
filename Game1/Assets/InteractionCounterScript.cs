@@ -43,6 +43,9 @@ public class InteractionCounterScript : MonoBehaviour
 
     public static bool GameIsPaused;
 
+    public GameObject monsterLibrary; //insert library monster here
+    public AudioSource monsterLibSound; //insert library monster here (it has an audio source
+
     void Start()
     {
         //InvokeRepeating("search", 0f, 0.5f); //item search
@@ -51,6 +54,8 @@ public class InteractionCounterScript : MonoBehaviour
         camObj = GameObject.Find("1stPCamera");
 
         interactioncounterscript = this;
+
+        monsterLibrary.SetActive(false); //hide library monster
 
     }
 
@@ -84,6 +89,24 @@ public class InteractionCounterScript : MonoBehaviour
                     {
                         GotKeysFor2ndFDoor = true;
                     }
+                }
+
+                if (hit.collider.tag == "librarykey") //if u pick up the library key, a monstah appears w sound
+                {
+                    Debug.Log("I tried to pick up a " + interactingObjectName);
+
+                    data_amount_key++; //key added, number goes up
+                    data_text_key.text = data_amount_key.ToString();
+
+                    Inventory.inventory.AddItem(interactingObjectName, interactingGameObject);
+                    hit.transform.SetParent(itemsDB.transform);
+                    AddToInventory(hit.transform);
+
+                    monsterLibrary.SetActive(true);
+                    monsterLibSound.Play();
+
+                    clearData(); //deleting the item from scene
+                    return;
                 }
 
                 if(hit.collider.tag == "labkey") //key to open the labyrinth door [notice tags]
@@ -123,6 +146,9 @@ public class InteractionCounterScript : MonoBehaviour
 
                         doorToggle doorSc = interactingGameObject.GetComponent<doorToggle>();
                         doorSc.toggleDoor();
+
+                        slots = inventorySlots.GetComponentsInChildren<RawImage>();
+                        slots[0].texture = null; //take the key away from the inventory slot. we're assuming that its the first texture item you pick up
                     }
                 }
                 if (hit.collider.tag == "lablockeddoor") //labyrinth door interaction
@@ -191,8 +217,8 @@ public class InteractionCounterScript : MonoBehaviour
             Debug.Log("No object tagged");
         }
 
-        useKey(hit.transform);
-        emptyInv();
+        //useKey(hit.transform);
+        //emptyInv();
     }
 
     void search ()

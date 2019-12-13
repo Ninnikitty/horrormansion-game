@@ -117,10 +117,10 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(string ItemID, GameObject Object) //adding item from interaction
     {
-        if(ItemID == GameObject.FindWithTag("Key").ToString()) //if an item has a tag "key"
+       /* if(ItemID == GameObject.FindWithTag("Key").ToString()) //if an item has a tag "key"
         {
             collectableItems[0]++;
-        }
+        } */
 
         textAnimation(Object.ToString()); //(ItemID); //calling the pickup text. uses the objects actual name
     }

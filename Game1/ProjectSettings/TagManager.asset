@@ -16,6 +16,7 @@ TagManager:
   - labkey
   - lockedbigdoor
   - safewithkeypad
+  - librarykey
   layers:
   - Default
   - TransparentFX
