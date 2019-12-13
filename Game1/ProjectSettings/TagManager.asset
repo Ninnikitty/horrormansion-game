@@ -9,6 +9,8 @@ TagManager:
   - Item
   - Pics
   - door
+  - Good
+  - Bad
   layers:
   - Default
   - TransparentFX
