@@ -159,6 +159,9 @@ public class InteractionCounterScript : MonoBehaviour
 
                         doorToggle doorSc = interactingGameObject.GetComponent<doorToggle>();
                         doorSc.toggleDoor();
+
+                        slots = inventorySlots.GetComponentsInChildren<RawImage>();
+                        slots[0].texture = null; //take the key away from the inventory slot. we're assuming that its the first texture item you pick up
                     }
                 }
                 if (hit.collider.tag == "lockedbigdoor") //open big door in the second floor if all the keys have been collected (tagged as keys)
