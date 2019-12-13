@@ -32,16 +32,18 @@ public class Inventory : MonoBehaviour
         {
             usingInv = true;
             ShowInv();
-            stopMovement();
             disableCamera();
+            Time.timeScale = 0f;
+            Cursor.visible = true; //show cursor if inventory is on
 
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && usingInv) //Press esc to cancel inventory
         {
             usingInv = false;
             HideInv();
-            allowMovement();
             allowCamera();
+            Time.timeScale = 1f;
+            Cursor.visible = false; //hide cursor
         }
 
         if (pickupText.enabled && (Time.time >= timeWhenDisappear)) //pickup text disappearance time
@@ -53,18 +55,20 @@ public class Inventory : MonoBehaviour
         {
             picInv = true;
             ShowPics(); //show pic inventory
-            stopMovement(); //stop movement
+            Time.timeScale = 0f; //stop game time
             HideKeyUI(); //hide key ui
             disableCamera(); //stop camera rotation
+            Cursor.visible = true;
 
         }
-        else if(Input.GetKeyDown(KeyCode.Escape) & picInv) //hide pic inventory
+        else if(Input.GetKeyDown(KeyCode.Escape) && picInv) //hide pic inventory
         {
             picInv = false;
             HidePics(); //hide picture canvas
-            allowMovement(); //allow movement
+            Time.timeScale = 1f; //allow game time to move
             ShowKeyUI(); //show key ui
             allowCamera(); //allow camera rotation
+            Cursor.visible = false;
         }
 
     }
@@ -99,18 +103,6 @@ public class Inventory : MonoBehaviour
         keyUI.SetActive(false);
     }
 
-    void allowMovement()
-    {
-        movement = GameObject.Find("player"); //find the game object (character)
-        movement.GetComponent<CharacterMovement>().enabled = true; //allow the movement script to run
-    }
-
-    void stopMovement()
-    {
-        movement = GameObject.Find("player"); //find the game object (character)
-        movement.GetComponent<CharacterMovement>().enabled = false; //disable the movement script
-    }
-
     void allowCamera()
     {
         getCamera = GameObject.Find("1stPCamera");
@@ -125,10 +117,10 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(string ItemID, GameObject Object) //adding item from interaction
     {
-        if(ItemID == GameObject.FindWithTag("Key").ToString()) //if an item has a tag "key"
+       /* if(ItemID == GameObject.FindWithTag("Key").ToString()) //if an item has a tag "key"
         {
             collectableItems[0]++;
-        }
+        } */
 
         textAnimation(Object.ToString()); //(ItemID); //calling the pickup text. uses the objects actual name
     }

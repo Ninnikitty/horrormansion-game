@@ -9,6 +9,14 @@ TagManager:
   - Item
   - Pics
   - door
+  - paper
+  - corridorlockeddoor
+  - lablockeddoor
+  - lobbykey
+  - labkey
+  - lockedbigdoor
+  - safewithkeypad
+  - librarykey
   layers:
   - Default
   - TransparentFX

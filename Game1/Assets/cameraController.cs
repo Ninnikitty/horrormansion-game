@@ -32,6 +32,7 @@ public class cameraController : MonoBehaviour
     private void LateUpdate()
     {
         CameraControl();
+        Cursor.visible = false;
     }
 
     void CameraControl()
