@@ -132,7 +132,7 @@ public class InteractionCounterScript : MonoBehaviour
 
                     crawlerBath.SetActive(true);
                     crawlerBathSound.Play();
-                    crawlerBathSound.loop = true;
+                    //crawlerBathSound.loop = true;
                     crawlersOn = true;
                     timeToDisappearM = Time.time + timeToAppearM; //time for disappearing so we're not keeping assets active that are not needed
 
@@ -171,10 +171,6 @@ public class InteractionCounterScript : MonoBehaviour
                     clearData(); //deleting the item from scene
                     return;
 
-                }
-                if (hit.collider.tag == "door") {
-                    doorToggle doorSc = interactingGameObject.GetComponent<doorToggle>();
-                    doorSc.toggleDoor();
                 }
 
                 if (hit.collider.tag == "door") //regular door interaction
