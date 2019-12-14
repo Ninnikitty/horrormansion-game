@@ -159,6 +159,11 @@ public class CharacterMovement : MonoBehaviour
             ScreenCapture.TakeScreenshot_Static(1000, 1000); //set width and height
             flashObj.GetComponent<Light>().enabled = true; //allow the light to be flashed
             timeWhenDisappear = Time.time + timeToAppear;
+
+            if (InteractionCounterScript.interactioncounterscript.hit.collider.tag == "Bad") //if an object (like monster) has a tag bad, its set inactive if you take a picture
+            {
+                InteractionCounterScript.interactioncounterscript.interactingGameObject.SetActive(false);
+            }
         }
 
         rot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
