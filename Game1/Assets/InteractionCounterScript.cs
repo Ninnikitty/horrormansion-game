@@ -48,6 +48,14 @@ public class InteractionCounterScript : MonoBehaviour
 
     public GameObject crawlerBath; //insert crawler here
     public AudioSource crawlerBathSound; // insert crawler's audio source here
+    bool crawlersOn;
+
+    public GameObject kitchenWallMonsters; //insert kitchenwallmonsters object here
+    public AudioSource kitchenWallMonstersSound; //insert the audio you want (test audio is inside the first kitchenwallmonster
+    bool kitchenWallMonstersOn;
+
+    private float timeToAppearM = 15f;
+    private float timeToDisappearM;
 
     void Start()
     {
@@ -59,7 +67,8 @@ public class InteractionCounterScript : MonoBehaviour
         interactioncounterscript = this;
 
         monsterLibrary.SetActive(false); //hide library monster
-        crawlerBath.SetActive(false);
+        crawlerBath.SetActive(false); // hide crawlers in the bathroom
+        kitchenWallMonsters.SetActive(false); //hide monster hands in the kitchen
 
     }
 
@@ -123,6 +132,30 @@ public class InteractionCounterScript : MonoBehaviour
 
                     crawlerBath.SetActive(true);
                     crawlerBathSound.Play();
+                    crawlerBathSound.loop = true;
+                    crawlersOn = true;
+                    timeToDisappearM = Time.time + timeToAppearM;
+
+                    clearData(); //deleting the item from scene
+                    return;
+                }
+
+                if (hit.collider.tag == "kitchenkey") //if u pick up the kitchen key [notice tags]
+                {
+                    Debug.Log("I tried to pick up a " + interactingObjectName);
+
+                    data_amount_key++; //key added, number goes up
+                    data_text_key.text = data_amount_key.ToString();
+
+                    Inventory.inventory.AddItem(interactingObjectName, interactingGameObject);
+                    hit.transform.SetParent(itemsDB.transform);
+                    AddToInventory(hit.transform);
+
+                    kitchenWallMonsters.SetActive(true);
+                    kitchenWallMonstersSound.loop = true;
+                    kitchenWallMonstersOn = true;
+
+                    timeToDisappearM = Time.time + timeToAppearM;
 
                     clearData(); //deleting the item from scene
                     return;
@@ -225,6 +258,16 @@ public class InteractionCounterScript : MonoBehaviour
             if (pressEText.enabled && (Time.time >= timeWhenDisappear)) //pickup text disappearance time
             {
                 pressEText.enabled = false;
+            }
+
+            if (kitchenWallMonstersOn = true && (Time.time >= timeToDisappearM)) //pickup text disappearance time
+            {
+                kitchenWallMonsters.SetActive(false);
+            }
+
+            if (crawlersOn = true && (Time.time >= timeToDisappearM)) //pickup text disappearance time
+            {
+                crawlerBath.SetActive(false);
             }
 
         } catch

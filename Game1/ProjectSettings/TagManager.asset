@@ -19,6 +19,7 @@ TagManager:
   - librarykey
   - Bad
   - Good
+  - kitchenkey
   layers:
   - Default
   - TransparentFX
