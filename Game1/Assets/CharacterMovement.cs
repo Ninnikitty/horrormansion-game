@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
+    public static CharacterMovement charactermovement;
 
     float speed = 0;
     float rotSpeed = 80;
@@ -27,7 +28,7 @@ public class CharacterMovement : MonoBehaviour
     private float timeToAppear = 0.01f;
     private float timeWhenDisappear;
 
-    AudioSource backgroundmusic;
+    public AudioSource backgroundmusic;
 
     KeyCode forward = KeyCode.W;
     KeyCode backwards = KeyCode.S;
@@ -54,8 +55,11 @@ public class CharacterMovement : MonoBehaviour
         flashObj.GetComponent<Light>().enabled = false; //light is off
 
         backgroundmusic = GameObject.Find("AmbienceAudioSource").GetComponent<AudioSource>(); //find the object and play the ambience background sound
+        InteractionCounterScript.interactioncounterscript.lastPartAudioSource.Stop();
         backgroundmusic.Play();
         backgroundmusic.loop = true;
+
+        charactermovement = this;
     }
 
     // Update is called once per frame

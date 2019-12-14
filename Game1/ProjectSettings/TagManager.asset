@@ -21,6 +21,7 @@ TagManager:
   - Good
   - kitchenkey
   - piano
+  - lastkey
   layers:
   - Default
   - TransparentFX

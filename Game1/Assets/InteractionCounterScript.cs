@@ -57,6 +57,8 @@ public class InteractionCounterScript : MonoBehaviour
     private float timeToAppearM = 15f; //set a time for the monsters to disappear
     private float timeToDisappearM;
 
+    public AudioSource lastPartAudioSource; //the last soundtrack when the last key is picked
+
     void Start()
     {
         //InvokeRepeating("search", 0f, 0.5f); //item search
@@ -71,6 +73,8 @@ public class InteractionCounterScript : MonoBehaviour
         kitchenWallMonsters.SetActive(false); //hide monster hands in the kitchen
 
         GameObject.Find("piano").GetComponent<AudioSource>().Stop(); //stop the piano sound
+
+        lastPartAudioSource = GameObject.Find("LastPartAudioSource").GetComponent<AudioSource>();
 
     }
 
@@ -99,11 +103,6 @@ public class InteractionCounterScript : MonoBehaviour
 
                     clearData(); //deleting the item from scene
                     return;
-
-                    if(data_amount_key == 4)
-                    {
-                        GotKeysFor2ndFDoor = true;
-                    }
                 }
 
                 if (hit.collider.tag == "librarykey") //if u pick up the library key, a monstah appears w sound
@@ -162,6 +161,27 @@ public class InteractionCounterScript : MonoBehaviour
                     clearData(); //deleting the item from scene
                     return;
                 }
+                
+                if (hit.collider.tag == "lastkey") //if we pick up the last key, the soundtrack changes
+                {
+                    Debug.Log("I tried to pick up a " + interactingObjectName);
+
+                    data_amount_key++; //key added, number goes up
+                    data_text_key.text = data_amount_key.ToString();
+
+                    Inventory.inventory.AddItem(interactingObjectName, interactingGameObject);
+                    hit.transform.SetParent(itemsDB.transform);
+                    AddToInventory(hit.transform);
+
+                    CharacterMovement.charactermovement.backgroundmusic.Stop();
+
+                    lastPartAudioSource.Play(); //change the music
+                    lastPartAudioSource.loop = true; 
+
+
+                    clearData(); //deleting the item from scene
+                    return;
+                }
 
                 if (hit.collider.tag == "Item") //if the object has a tag "item" -> can be instered to any game object. remember to add box colliders (2), one has the trigger option and is sized correctly and one keeps the gravity for the object. then add a raw image and the texture = icon of the item. shows up in the inventory
                 {
@@ -209,9 +229,16 @@ public class InteractionCounterScript : MonoBehaviour
                 }
                 if (hit.collider.tag == "lockedbigdoor") //open big door in the second floor if all the keys have been collected (tagged as keys)
                 {
-                    if (GotKeysFor2ndFDoor == true)
+                    //if (GotKeysFor2ndFDoor == true)
+
+                    if (data_amount_key == 3)
                     {
-                        //what happens at the end of the game
+                        GameObject.Find("EndCredits").SetActive(true); //show end credits if player opens the last door (canvas)
+                        Time.timeScale = 0f;
+                        camObj.GetComponent<cameraController>().enabled = false;
+                        Inventory.inventory.HideKeyUI();
+                        lastPartAudioSource.Stop(); //stop the last soundtrack
+                        GameObject.Find("EndCredits").GetComponent<AudioSource>().Play(); //play the soundtrack thats attached to the endcredits
                     }
                 }
 
@@ -249,7 +276,7 @@ public class InteractionCounterScript : MonoBehaviour
                       camObj.GetComponent<cameraController>().enabled = false; //no camera movement allowed
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.Escape) && usingPaperText) // esct -> get away from paper screen
+            if (Input.GetKeyDown(KeyCode.Escape) && usingPaperText) // esct -> get away from paper screen
             {
                 usingPaperText = false;
                 paperTextHolder.SetActive(false);
