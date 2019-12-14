@@ -54,7 +54,7 @@ public class InteractionCounterScript : MonoBehaviour
     public AudioSource kitchenWallMonstersSound; //insert the audio you want (test audio is inside the first kitchenwallmonster
     bool kitchenWallMonstersOn;
 
-    private float timeToAppearM = 15f;
+    private float timeToAppearM = 15f; //set a time for the monsters to disappear
     private float timeToDisappearM;
 
     void Start()
@@ -134,7 +134,7 @@ public class InteractionCounterScript : MonoBehaviour
                     crawlerBathSound.Play();
                     crawlerBathSound.loop = true;
                     crawlersOn = true;
-                    timeToDisappearM = Time.time + timeToAppearM;
+                    timeToDisappearM = Time.time + timeToAppearM; //time for disappearing so we're not keeping assets active that are not needed
 
                     clearData(); //deleting the item from scene
                     return;
@@ -260,12 +260,12 @@ public class InteractionCounterScript : MonoBehaviour
                 pressEText.enabled = false;
             }
 
-            if (kitchenWallMonstersOn = true && (Time.time >= timeToDisappearM)) //pickup text disappearance time
+            if (kitchenWallMonstersOn = true && (Time.time >= timeToDisappearM)) //disappearance time
             {
                 kitchenWallMonsters.SetActive(false);
             }
 
-            if (crawlersOn = true && (Time.time >= timeToDisappearM)) //pickup text disappearance time
+            if (crawlersOn = true && (Time.time >= timeToDisappearM)) //disappearance time
             {
                 crawlerBath.SetActive(false);
             }
