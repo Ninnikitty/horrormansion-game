@@ -27,6 +27,8 @@ public class CharacterMovement : MonoBehaviour
     private float timeToAppear = 0.01f;
     private float timeWhenDisappear;
 
+    AudioSource backgroundmusic;
+
     KeyCode forward = KeyCode.W;
     KeyCode backwards = KeyCode.S;
     KeyCode right = KeyCode.D;
@@ -50,6 +52,10 @@ public class CharacterMovement : MonoBehaviour
 
         flashObj = GameObject.Find("CameraFlashLight"); //find the flash cameobject
         flashObj.GetComponent<Light>().enabled = false; //light is off
+
+        backgroundmusic = GameObject.Find("AmbienceAudioSource").GetComponent<AudioSource>(); //find the object and play the ambience background sound
+        backgroundmusic.Play();
+        backgroundmusic.loop = true;
     }
 
     // Update is called once per frame
