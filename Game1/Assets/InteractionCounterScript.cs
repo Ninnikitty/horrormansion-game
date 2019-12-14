@@ -44,7 +44,10 @@ public class InteractionCounterScript : MonoBehaviour
     public static bool GameIsPaused;
 
     public GameObject monsterLibrary; //insert library monster here
-    public AudioSource monsterLibSound; //insert library monster here (it has an audio source
+    public AudioSource monsterLibSound; //insert library monster here (it has an audio source)
+
+    public GameObject crawlerBath; //insert crawler here
+    public AudioSource crawlerBathSound; // insert crawler's audio source here
 
     void Start()
     {
@@ -56,6 +59,7 @@ public class InteractionCounterScript : MonoBehaviour
         interactioncounterscript = this;
 
         monsterLibrary.SetActive(false); //hide library monster
+        crawlerBath.SetActive(false);
 
     }
 
@@ -116,6 +120,9 @@ public class InteractionCounterScript : MonoBehaviour
                     Inventory.inventory.AddItem(interactingObjectName, interactingGameObject);
                     hit.transform.SetParent(itemsDB.transform);
                     AddToInventory(hit.transform);
+
+                    crawlerBath.SetActive(true);
+                    crawlerBathSound.Play();
 
                     clearData(); //deleting the item from scene
                     return;

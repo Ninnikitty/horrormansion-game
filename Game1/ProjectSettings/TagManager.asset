@@ -17,6 +17,8 @@ TagManager:
   - lockedbigdoor
   - safewithkeypad
   - librarykey
+  - Bad
+  - Good
   layers:
   - Default
   - TransparentFX
