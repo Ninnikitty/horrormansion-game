@@ -70,6 +70,8 @@ public class InteractionCounterScript : MonoBehaviour
         crawlerBath.SetActive(false); // hide crawlers in the bathroom
         kitchenWallMonsters.SetActive(false); //hide monster hands in the kitchen
 
+        GameObject.Find("piano").GetComponent<AudioSource>().Stop(); //stop the piano sound
+
     }
 
     public void Update()
@@ -223,12 +225,18 @@ public class InteractionCounterScript : MonoBehaviour
                 }
 
             }
+
+            if (hit.collider.tag == "piano")
+            {
+                interactingGameObject.GetComponent<AudioSource>().Play(); //play the audio piano has
+            } 
+
             //remember to add text component (hidden) to the paper object! and write the text you want to appear
             if (hit.collider.tag == "paper") //also remember to set a triggered box collider to the paper object. make sure the character's interaction camera can see the paper collider from close distance
             {
-                pressEText.enabled = true;
-                pressEText.text = "press E to interact"; //let the player know they can interact with this object
-                timeWhenDisappear = Time.time + timeToAppear;
+               // pressEText.enabled = true;
+               // pressEText.text = "press E to interact"; //let the player know they can interact with this object
+               // timeWhenDisappear = Time.time + timeToAppear;
 
                 if (Input.GetKeyDown(KeyCode.E)) //press e to interact
                 {
