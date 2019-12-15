@@ -18367,7 +18367,7 @@ GameObject:
   - component: {fileID: 515394498}
   - component: {fileID: 515394497}
   m_Layer: 0
-  m_Name: paper (2)
+  m_Name: corridorpaper
   m_TagString: paper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
