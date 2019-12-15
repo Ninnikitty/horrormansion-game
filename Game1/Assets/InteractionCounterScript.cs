@@ -59,6 +59,14 @@ public class InteractionCounterScript : MonoBehaviour
 
     public AudioSource lastPartAudioSource; //the last soundtrack when the last key is picked
 
+    public GameObject EndCreditsHolder;
+
+    bool CreditsAreOn;
+
+    public GameObject windowMonster;
+
+    AudioSource pianoSound;
+
     void Start()
     {
         //InvokeRepeating("search", 0f, 0.5f); //item search
@@ -68,11 +76,13 @@ public class InteractionCounterScript : MonoBehaviour
 
         interactioncounterscript = this;
 
+        windowMonster.SetActive(false);
         monsterLibrary.SetActive(false); //hide library monster
         crawlerBath.SetActive(false); // hide crawlers in the bathroom
         kitchenWallMonsters.SetActive(false); //hide monster hands in the kitchen
 
-        GameObject.Find("piano").GetComponent<AudioSource>().Stop(); //stop the piano sound
+        pianoSound = GameObject.Find("piano").GetComponent<AudioSource>(); //stop the piano sound
+        pianoSound.Stop();
 
         lastPartAudioSource = GameObject.Find("LastPartAudioSource").GetComponent<AudioSource>();
 
@@ -230,15 +240,20 @@ public class InteractionCounterScript : MonoBehaviour
                 if (hit.collider.tag == "lockedbigdoor") //open big door in the second floor if all the keys have been collected (tagged as keys)
                 {
                     //if (GotKeysFor2ndFDoor == true)
+                    Debug.Log("hit bigdoor");
 
-                    if (data_amount_key == 3)
+                    if (data_amount_key == 4)
                     {
-                        GameObject.Find("EndCredits").SetActive(true); //show end credits if player opens the last door (canvas)
+                        Debug.Log("we have the key amount");
+                        //GameObject.Find("EndCredits").SetActive(true); //show end credits if player opens the last door (canvas)
+                        EndCreditsHolder.SetActive(true);
                         Time.timeScale = 0f;
                         camObj.GetComponent<cameraController>().enabled = false;
                         Inventory.inventory.HideKeyUI();
                         lastPartAudioSource.Stop(); //stop the last soundtrack
+                        CharacterMovement.charactermovement.backgroundmusic.Stop();
                         GameObject.Find("EndCredits").GetComponent<AudioSource>().Play(); //play the soundtrack thats attached to the endcredits
+                        CreditsAreOn = true;
                     }
                 }
 
@@ -252,10 +267,16 @@ public class InteractionCounterScript : MonoBehaviour
                 }
 
             }
+            else if (Input.GetKeyDown(KeyCode.Escape) && CreditsAreOn) //if credits are on and we have pressed esc
+            {
+                Application.Quit(); //doesnt do anything yet
+            }
 
             if (hit.collider.tag == "piano")
             {
-                interactingGameObject.GetComponent<AudioSource>().Play(); //play the audio piano has
+                //interactingGameObject.GetComponent<AudioSource>().Play(); //play the audio piano has
+                pianoSound.Play();
+                windowMonster.SetActive(true);
             } 
 
             //remember to add text component (hidden) to the paper object! and write the text you want to appear
@@ -301,13 +322,10 @@ public class InteractionCounterScript : MonoBehaviour
                 crawlerBath.SetActive(false);
             }
 
-        } catch
+        } catch (System.Exception ex)
         {
-            Debug.Log("No object tagged");
+            Debug.Log("No object tagged" + ex);
         }
-
-        //useKey(hit.transform);
-        //emptyInv();
     }
 
     void search ()
@@ -347,39 +365,6 @@ public class InteractionCounterScript : MonoBehaviour
         }
         interactingGameObject = null;
     }
-
-   /* //testing
-    public void useKey(Transform item) //function to use key (deletes a key one by one atm)
-    {
-        if(data_amount_key >= 1 && data_amount_key <= 10) //cant go below 0
-        {
-            if (Input.GetKeyDown(KeyCode.U))
-            {
-                Debug.Log("use");
-                data_amount_key--;
-                data_text_key.text = data_amount_key.ToString();
-                emptyInv();
-
-                slots = inventorySlots.GetComponentsInChildren<RawImage>();
-                for (int i = 0; i < slots.Length; i++)
-                {
-                    slots[i].texture = null; //now it deletes all the rawimages from inventory (items picked)
-                }
-            }
-        }
-    }
-    //testing
-    public void emptyInv() //deletes all items from inventory. implement a method that lets u choose the item to choose Or let the game events take the specific item
-    {
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            slots = inventorySlots.GetComponentsInChildren<RawImage>();
-            for (int i = 0; i < slots.Length; i++)
-            {
-                slots[i].texture = null; //now it deletes all the rawimages from inventory (items picked)
-            }
-        }
-    } */
 
     public void AddToInventory(Transform item)
     {

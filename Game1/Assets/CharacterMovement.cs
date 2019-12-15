@@ -29,6 +29,7 @@ public class CharacterMovement : MonoBehaviour
     private float timeWhenDisappear;
 
     public AudioSource backgroundmusic;
+    public AudioSource cameraSound;
 
     KeyCode forward = KeyCode.W;
     KeyCode backwards = KeyCode.S;
@@ -60,6 +61,9 @@ public class CharacterMovement : MonoBehaviour
         backgroundmusic.loop = true;
 
         charactermovement = this;
+
+        cameraSound = GameObject.Find("1stPCamera").GetComponent<AudioSource>(); //the camera sound is an audio source from 1stpersoncamera
+        cameraSound.Stop();
     }
 
     // Update is called once per frame
@@ -161,7 +165,7 @@ public class CharacterMovement : MonoBehaviour
         //if (flashObj.GetComponent<Light>().enabled = true && (0.02f - lastTime) > minTime)
          if (flashObj.GetComponent<Light>().enabled = true && (Time.time >= timeWhenDisappear)) //disappearance time
         {
-           flashObj.GetComponent<Light>().enabled = false; 
+           flashObj.GetComponent<Light>().enabled = false;
         } 
          
         if (Input.GetKeyDown(KeyCode.F) && canvasOn) //capturing pictures
@@ -174,6 +178,8 @@ public class CharacterMovement : MonoBehaviour
             {
                 InteractionCounterScript.interactioncounterscript.interactingGameObject.SetActive(false);
             }
+
+            cameraSound.Play(); //camerasound
         }
 
         rot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
