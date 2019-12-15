@@ -47,6 +47,7 @@ public class CharacterMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         cs = FindObjectOfType<cameraController>();
         timeTillIdle = timeTillIdleDefault;
+        HideCanvas();
 
         flashObj = GameObject.Find("CameraFlashLight"); //find the flash cameobject
         flashObj.GetComponent<Light>().enabled = false; //light is off

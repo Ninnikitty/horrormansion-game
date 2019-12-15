@@ -11,6 +11,7 @@ TagManager:
   - door
   - Good
   - Bad
+  - sanity
   layers:
   - Default
   - TransparentFX
