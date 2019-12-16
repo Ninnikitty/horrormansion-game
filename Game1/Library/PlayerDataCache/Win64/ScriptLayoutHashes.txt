@@ -1,10 +1,9 @@
 Win64
 PlayerPath?
-D:/Kauhupeli/build/Game1.exe
+F:/GitHubProjects/horror-game/uwugame/Game1.exe
 SceneListBegin?
 Assets/Scenes/MainMenu.unity
 Assets/Scenes/GameScene1.unity
-Assets/Scenes/LobbyScene.unity
 SceneListEnd?
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.ScreenCapture
 3c08375166df118bd1801438fc36b92f Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
@@ -232,6 +231,7 @@ f080a86a4a939dd08c0cc4f4f05e1e4e Assembly-CSharp-firstpass.dll:UnityStandardAsse
 172cfdd977ca8a6f32932932c2f0d2ee Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.SepiaTone
 3bd301965190e77c3822602bd15d95bb Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Twirl
 3bd301965190e77c3822602bd15d95bb Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Vortex
+1c3d1502c5bcc4fed6f9f714151b4417 Assembly-CSharp.dll:.PauseMenu
 1ce6f757bda026ce273c4a348afe5c9a Assembly-CSharp.dll:.opencloseWindow1
 c5bbb5c4b020d95f6395b3448c0eddcc Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.CameraMotionBlur
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
@@ -257,6 +257,6 @@ a6742d7804d9ffde99f8f086d08d7a1a Assembly-CSharp.dll:BayatGames.SaveGameFree.Exa
 8ccce45a027cfbb02441998345f2c121 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.EdgeDetection
 8649814970b42d345b89944b862453cc Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 10d40c4c007ed0fe1a397ef11ee530fa Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.ColorCorrectionLookup
+b74a2a2b68f4dbe9bae700796a7aafa8 Assembly-CSharp.dll:.sanityDealer
 83dffc789cd416ac4ef1fc44f3423e35 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Tonemapping
 47cd05cf11ce8beb2fd9a1522f58f5ec Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.AutoMobileShaderSwitch
-b74a2a2b68f4dbe9bae700796a7aafa8 Assembly-CSharp.dll:.sanityDealer
