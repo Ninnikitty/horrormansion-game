@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class sanityDealer : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class sanityDealer : MonoBehaviour
     public Sprite sanity_sprite_3;
     public Sprite sanity_sprite_4;
     public Sprite sanity_sprite_5;
+    public Sprite sanity_sprite_dead;
 
     public AudioClip heartBeatSound;
     public AudioClip deathSound;
@@ -32,8 +34,10 @@ public class sanityDealer : MonoBehaviour
         sanityLevel = 5;
         playerAudio.clip = heartBeatSound;
         GameObject player = GameObject.Find("player");
-        sanityObjs = GameObject.FindGameObjectsWithTag("sanity");
         ic = player.GetComponent<InteractionCounterScript>();
+    }
+    private void Awake() {
+        sanityObjs = GameObject.FindGameObjectsWithTag("sanity");
     }
 
     // Update is called once per frame
@@ -79,7 +83,7 @@ public class sanityDealer : MonoBehaviour
         //Debug.Log("Sanity level: " + sanityLevel + ", " + sanity);
     }
     private void setSanityEffects() {
-        playSanitySound();
+        playerAudio.clip = heartBeatSound;
         switch (sanityLevel) {
             case 0:
                 foreach (GameObject obj in sanityObjs) {
@@ -88,69 +92,32 @@ public class sanityDealer : MonoBehaviour
                         obj.GetComponent<Image>().color = new Color(0, 0, 0, 1f);
                     }
                 }
-                gameOver();
-                break;
-            case 1:
-                foreach (GameObject obj in sanityObjs) {
-                    if (obj.name == "sanity_effect") {
-                        obj.GetComponent<Image>().sprite = sanity_sprite_1;
-                        obj.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-                    }
-                }
-                break;
-            case 2:
-                foreach (GameObject obj in sanityObjs) {
-                    if (obj.name == "sanity_effect") {
-                        obj.GetComponent<Image>().sprite = sanity_sprite_2;
-                        obj.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-                    }
-                }
-                break;
-            case 3:
-                foreach (GameObject obj in sanityObjs) {
-                    if (obj.name == "sanity_effect") {
-                        obj.GetComponent<Image>().sprite = sanity_sprite_3;
-                        obj.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-                    }
-                }
-                break;
-            case 4:
-                foreach (GameObject obj in sanityObjs) {
-                    if (obj.name == "sanity_effect") {
-                        obj.GetComponent<Image>().sprite = sanity_sprite_4;
-                        obj.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-                    }
-                }
-                break;
-            case 5:
-                foreach (GameObject obj in sanityObjs) {
-                    if (obj.name == "sanity_effect") {
-                        obj.GetComponent<Image>().sprite = sanity_sprite_5;
-                        obj.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-                    }
-                }
-                break;
-            default:
-                break;
-        }
-    }
-    private void gameOver() { Debug.Log("You Died!"); }
-
-    private void playSanitySound() {
-        playerAudio.clip = heartBeatSound;
-        switch (sanityLevel) {
-            case 0:
                 if (!playerAudio.isPlaying) {
                     if (!dead) {
                         playerAudio.PlayOneShot(deathSound);
                         dead = true;
                     }
                 }
+                if (dead && !playerAudio.isPlaying) {
+                    foreach (GameObject obj in sanityObjs) {
+                        if (obj.name == "sanity_effect") {
+                            obj.GetComponent<Image>().sprite = sanity_sprite_dead;
+                            obj.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 1f);
+                        }
+                    }
+                }
+                gameOver();
                 break;
             case 1:
                 if (!playerAudio.isPlaying) {
                     playerAudio.Play();
                     Debug.Log("Playing sanity level 1");
+                }
+                foreach (GameObject obj in sanityObjs) {
+                    if (obj.name == "sanity_effect") {
+                        obj.GetComponent<Image>().sprite = sanity_sprite_1;
+                        obj.GetComponent<Image>().color = new Color(0, 0, 0, 1f);
+                    }
                 }
                 break;
             case 2:
@@ -163,6 +130,12 @@ public class sanityDealer : MonoBehaviour
                     }
                     Debug.Log("Playing sanity level 2");
                 }
+                foreach (GameObject obj in sanityObjs) {
+                    if (obj.name == "sanity_effect") {
+                        obj.GetComponent<Image>().sprite = sanity_sprite_2;
+                        obj.GetComponent<Image>().color = new Color(0, 0, 0, 1f);
+                    }
+                }
                 break;
             case 3:
                 interwall = 1f;
@@ -173,6 +146,12 @@ public class sanityDealer : MonoBehaviour
                         timer = 0;
                     }
                     Debug.Log("Playing sanity level 3");
+                }
+                foreach (GameObject obj in sanityObjs) {
+                    if (obj.name == "sanity_effect") {
+                        obj.GetComponent<Image>().sprite = sanity_sprite_3;
+                        obj.GetComponent<Image>().color = new Color(0, 0, 0, 1f);
+                    }
                 }
                 break;
             case 4:
@@ -185,12 +164,30 @@ public class sanityDealer : MonoBehaviour
                     }
                     Debug.Log("Playing sanity level 4");
                 }
+                foreach (GameObject obj in sanityObjs) {
+                    if (obj.name == "sanity_effect") {
+                        obj.GetComponent<Image>().sprite = sanity_sprite_4;
+                        obj.GetComponent<Image>().color = new Color(0, 0, 0, 1f);
+                    }
+                }
                 break;
             case 5:
+                foreach (GameObject obj in sanityObjs) {
+                    if (obj.name == "sanity_effect") {
+                        obj.GetComponent<Image>().sprite = sanity_sprite_5;
+                        obj.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                    }
+                }
                 break;
             default:
                 break;
         }
     }
+    private void gameOver() {
 
+        Debug.Log("You Died!");
+        if(Input.GetKey(KeyCode.Mouse0)) { 
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
+    }
 }

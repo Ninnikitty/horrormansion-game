@@ -31399,7 +31399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -40110,12 +40110,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0.3803922, g: 0.3803922, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 7aa099aecb6fd1d42891b291ebef8a5a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -47987,6 +47987,7 @@ MonoBehaviour:
   sanity_sprite_3: {fileID: 21300000, guid: 922725840dffdba4b8524c15fb9bdb39, type: 3}
   sanity_sprite_4: {fileID: 21300000, guid: 102beb0242671dd4d893f42134709787, type: 3}
   sanity_sprite_5: {fileID: 21300000, guid: e0b2713d28ae68e48bd714ca434f2419, type: 3}
+  sanity_sprite_dead: {fileID: 21300000, guid: 4387e6e3fedd6c543b3b833e31c5d15a, type: 3}
   heartBeatSound: {fileID: 8300000, guid: 726e310b702cdfe4088b83d4d3f8ee56, type: 3}
   deathSound: {fileID: 8300000, guid: c0bc37276ebc9e041a95876b98ab3f27, type: 3}
   playerAudio: {fileID: 2066331959}
