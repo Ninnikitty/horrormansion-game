@@ -24,6 +24,7 @@ public class cameraController : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = false;
         cam = gameObject.GetComponent<Camera>();
         PhotoView.deletePics(); //clean previous sessions pictures from the screenshotfolder every time the camera is started for the first time (might have to change when the saving mechanism has been implemented
     }
@@ -32,7 +33,6 @@ public class cameraController : MonoBehaviour
     private void LateUpdate()
     {
         CameraControl();
-        Cursor.visible = false;
     }
 
     void CameraControl()

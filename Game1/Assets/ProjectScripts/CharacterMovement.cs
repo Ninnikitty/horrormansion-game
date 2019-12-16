@@ -61,6 +61,7 @@ public class CharacterMovement : MonoBehaviour
         backgroundmusic.loop = true;
 
         charactermovement = this;
+        HideCanvas();
 
         cameraSound = GameObject.Find("1stPCamera").GetComponent<AudioSource>(); //the camera sound is an audio source from 1stpersoncamera
         cameraSound.Stop();
