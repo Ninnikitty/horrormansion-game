@@ -1,4 +1,4 @@
-# Unity project: Horror Mansion
+# Horror Mansion
 3D horror themed game
 
 "Never trust the mansion!"
