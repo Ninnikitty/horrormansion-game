@@ -9,7 +9,7 @@ A young couple loses a bet among their friends which costs them one night in an 
 
 How to play the game:
 
-The player will be able to walk / sprint around the mansion interior and interact with different items. The main objective is to find the keys to open the barricaded door to save the main character's wife. Along the way the player will face enemies that can only be executed with the camera's flash. They need to keep an eye on their sanity bar since it lower as time passes and the player experiences events.
+The player will be able to walk / sprint around the mansion interior and interact with different items. The main objective is to find the keys to open the barricaded door to save the main character's wife. Along the way the player will face enemies that can only be executed with the camera's flash. They need to keep an eye on their sanity bar since it lowers as time passes and the player experiences events.
 
 Controllers:
 
