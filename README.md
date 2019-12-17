@@ -13,8 +13,13 @@ The player will be able to walk / sprint around the mansion interior and interac
 
 Controllers:
 E = Interact / use
+
 I = Open inventory
+
 C = First person camera (polaroid)
+
 F = Take a picture in 1st person
+
 P = Open the pause menu
+
 G = Open gallery for screenshots
