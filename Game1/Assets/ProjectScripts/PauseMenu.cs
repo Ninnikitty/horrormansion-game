@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
@@ -12,6 +13,8 @@ public class PauseMenu : MonoBehaviour
     public AudioMixer audioMixer;
     public Dropdown resolutionDropdown;
     Resolution[] resolutions;
+
+    GameObject getCamera;
 
     void Start()
     {
@@ -37,7 +40,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.P)) {
             if (GameIsPaused) {Resume();}
             else {Pause();}
         }
@@ -48,6 +51,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = false;
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
+        allowCamera();
         GameIsPaused = false;
     }
     //Pauses the game
@@ -56,6 +60,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
+        disableCamera();
         GameIsPaused = true;
     }
     //Quits the game
@@ -81,4 +86,15 @@ public class PauseMenu : MonoBehaviour
         Screen.fullScreen = isFullScreen;
     }
 
+    void allowCamera()
+    {
+        getCamera = GameObject.Find("1stPCamera");
+        getCamera.GetComponent<cameraController>().enabled = true;
+    }
+
+    void disableCamera()
+    {
+        getCamera = GameObject.Find("1stPCamera");
+        getCamera.GetComponent<cameraController>().enabled = false;
+    }
 }
