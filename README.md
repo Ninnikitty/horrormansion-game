@@ -1,11 +1,7 @@
-# Unity project: Horror game
+# Unity project: Horror Mansion
+3D horror themed game
 
-What kind of game: 3D horror themed game
-
-What is games slogan:
-
-What is the role of the gamer:
-
+"Never trust the mansion!"
 
 Story:
 
